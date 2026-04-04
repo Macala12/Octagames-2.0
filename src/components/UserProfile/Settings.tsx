@@ -5,8 +5,6 @@ import BottomSheet from "../ui/bottom-sheet/BottomSheet";
 import HowItWorksContent from "../ui/bottom-sheet/HowitWorks";
 import { ContactUsContent } from "../ui/bottom-sheet/ContactUs";
 
-const ACCENT = "#09f2a6";
-
 interface SettingsRowProps {
   icon: React.ReactNode;
   iconBg: string;

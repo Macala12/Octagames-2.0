@@ -1,6 +1,6 @@
-// ─── EditSecurity.tsx ────────────────────────────────────────────────────────
-import React, { useState } from "react";
+import { useState } from "react";
 
+// ─── EditSecurity.tsx ────────────────────────────────────────────────────────
 interface Props {
   onBack?: () => void;
   onCancel?: () => void;

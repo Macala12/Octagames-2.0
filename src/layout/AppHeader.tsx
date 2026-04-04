@@ -1,13 +1,10 @@
 import { useEffect, useRef } from "react";
-import { useLocation } from "react-router";
 
 import NotificationDropdown from "../components/header/NotificationDropdown";
 import UserHeader from "../components/header/UserHeader";
-import { ThemeToggleButton } from "../components/common/ThemeToggleButton";
 
 const AppHeader: React.FC = () => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const location = useLocation();
 
   // ⌘ + K shortcut (keep for desktop search later)
   useEffect(() => {

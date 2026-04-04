@@ -1,6 +1,6 @@
 
 export default function WalletCard() {
-  const WalletCard = ({ 
+  ({ 
   balance,
   nairaValue,
   onTopUp,

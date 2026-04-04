@@ -1,5 +1,4 @@
 import UserMetaCard from "../components/UserProfile/UserMetaCard";
-import UserInfoCard from "../components/UserProfile/UserInfoCard";
 import Settings from "../components/UserProfile/Settings";
 import PageMeta from "../components/common/PageMeta";
 import ReferralCard from "../components/cards/ReferralCard";
@@ -18,7 +17,7 @@ export default function UserProfiles() {
               <h1 className="text-[20px] font-bold text-gray-900 dark:text-white">Profile</h1>
               <p className="text-xs text-gray-400 mt-0.5">Play challenges and win instant cash</p>
             </div>
-            <button onClick={() => setOpen(true)} className="w-9 h-9 rounded-full flex items-center justify-center bg-gray-100 dark:bg-white/10 border-gray-200 dark:border-white/10">
+            <button className="w-9 h-9 rounded-full flex items-center justify-center bg-gray-100 dark:bg-white/10 border-gray-200 dark:border-white/10">
               <svg
                 width="16"
                 height="16"

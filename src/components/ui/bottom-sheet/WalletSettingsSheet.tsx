@@ -1,6 +1,4 @@
 "use client"
-
-import { useState } from "react"
 import Switch from "../../form/switch/Switch"
 import Label from "../../form/Label"
 
@@ -34,20 +32,6 @@ const settingsList: Setting[] = [
 ]
 
 export default function WalletQuickSettings() {
-  const [toggles, setToggles] = useState<Record<string, boolean>>({
-    pin: true,
-    notifications: true,
-    confirmWager: true,
-    lockWithdraw: false,
-  })
-
-  const toggleSwitch = (id: string) => {
-    setToggles((prev) => ({
-      ...prev,
-      [id]: !prev[id],
-    }))
-  }
-
   return (
     <div className="flex flex-col gap-3">
       {settingsList.map((setting) => (

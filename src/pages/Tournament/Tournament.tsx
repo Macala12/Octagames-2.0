@@ -31,7 +31,6 @@ interface Props {
   onShare?: () => void;
   onHelp?: () => void;
   players: LeaderboardPlayer[];
-
 }
 
 const ACCENT      = "#09f2a6";
@@ -476,7 +475,7 @@ export default function TournamentScreen({
         </div>
 
         <div className="relative z-10">
-            {top3.length > 0 && <Podium data={top3} players={top3} />}
+            {top3.length > 0 && <Podium data={data} players={top3} />}
             <div className="bg-white dark:bg-white/5 border border-gray-100 dark:border-white/8 rounded-[20px] mt-3 overflow-hidden">
             {rest.map(player => <LeaderboardRow key={player.rank} player={player} />)}
             </div>   

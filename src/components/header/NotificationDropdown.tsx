@@ -8,6 +8,7 @@ export default function NotificationDropdown() {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [notifying, setNotifying] = useState(true);
+  setNotifying(true);
 
   function toggleDropdown() {
     setIsOpen(!isOpen);
@@ -16,11 +17,6 @@ export default function NotificationDropdown() {
   function closeDropdown() {
     setIsOpen(false);
   }
-
-  const handleClick = () => {
-    toggleDropdown();
-    setNotifying(false);
-  };
   return (
     <div className="relative">
       <button

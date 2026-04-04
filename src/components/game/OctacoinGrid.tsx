@@ -1,4 +1,3 @@
-import React from "react";
 import coin from "../../images/coin.png";
 
 interface CoinPack {
@@ -23,8 +22,6 @@ const coinPacks: CoinPack[] = [
   { id: "5", coins: 2500, price: 8000,  best_value: false, bonus: "+300 free" },
   { id: "6", coins: 5000, price: 15000, best_value: false, bonus: "+700 free" },
 ];
-
-const coinSizes = ["w-7 h-7", "w-8 h-8", "w-9 h-9", "w-10 h-10", "w-12 h-12", "w-14 h-14"];
 
 const ACCENT = "#09f2a6";
 
@@ -59,7 +56,7 @@ export default function OctaCoinGrid({
 
       {/* Grid */}
       <div className="grid grid-cols-3 gap-2.5">
-        {displayedPacks.map((pack, i) => (
+        {displayedPacks.map((pack) => (
           <div
             key={pack.id}
             onClick={() => handleSelect(pack)}

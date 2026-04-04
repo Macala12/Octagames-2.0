@@ -1,6 +1,5 @@
 const ACCENT = "#09f2a6";
 const ACCENT_DIM = "rgba(9,242,166,0.1)";
-const ACCENT_TEXT = "#022b1e";
 
 const stats = [
   {

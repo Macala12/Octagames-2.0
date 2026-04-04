@@ -7,34 +7,13 @@ import numberOne from "../../images/number-1.png"
 import numberTwo from "../../images/number-2.png"
 import numberThree from "../../images/number-3.png"
 
-import HomeCarousel from "../../components/carousel/HomeCarousel";
 import OctaCoinGrid from "../../components/game/OctacoinGrid";
 import { GameGrid } from "../../components/game/GameGrid";
 import QuickActions from "../../components/game/QuickAction";
 import WinnersMarquee from "../../components/carousel/RecentWinners";
 import TopPlayers from "../../components/game/TopPlayer";
-import UserStreak from "../../components/game/UserStreak";
-import BuyOctaCoinsCard from "../../components/game/BuyCoin";
 
 export default function Home() {
-  const slides = [
-    {
-      id: "1",
-      title: "Win Big Today 🔥",
-      image: gameImg,
-    },
-    {
-      id: "2",
-      title: "Join Tournaments 🎮",
-      image: gameImg2,
-    },
-    {
-      id: "3",
-      title: "Play & Earn 💰",
-      image: gameImg,
-    },
-  ];
-
   const games = [
     {
       id: "1",

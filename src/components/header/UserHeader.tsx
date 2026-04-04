@@ -1,11 +1,3 @@
-import { useState } from "react";
-const getTitle = () => {
-  if (location.pathname.startsWith("/challenges")) return "Challenges";
-  if (location.pathname.startsWith("/wallet")) return "Wallet";
-  if (location.pathname.startsWith("/friends")) return "Friends";
-  if (location.pathname.startsWith("/profile")) return "Profile";
-  return "Home";
-};
 export default function UserHeader() {
   return (
     <div className="relative">

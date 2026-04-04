@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import { useState, useMemo } from "react";
 
 export interface Tier {
   id: string;
@@ -12,7 +12,7 @@ export interface Tier {
 
 export interface ChallengeDetailData {
   gameTitle: string;
-  description: string;
+  description?: string;
   image?: string;
   players: number;
   tiers: Tier[];
@@ -86,7 +86,7 @@ function TierCard({ tier, wager, valid }: { tier: Tier; wager: number; valid: bo
   );
 }
 
-export default function ChallengeDetail({ data, balance = 350, onBack, onPlay }: Props) {
+export default function ChallengeDetail({ data, balance = 350, onPlay }: Props) {
   const tiers = data.tiers?.length ? data.tiers : DEFAULT_TIERS;
   const [wagerStr, setWagerStr] = useState("");
 

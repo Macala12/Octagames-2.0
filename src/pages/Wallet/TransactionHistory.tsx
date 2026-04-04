@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 export interface Transaction {
   id: string;
   type: "credit" | "debit";
@@ -91,7 +89,6 @@ const EmptyTransactions = ({ onTopUp }: { onTopUp?: () => void }) => (
 );
 
 export default function TransactionScreen({
-  balance = 12700,
   transactions = [{
     id: "sadsa",
     type: "credit",

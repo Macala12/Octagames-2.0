@@ -1,8 +1,7 @@
-import React from "react";
-
 interface Challenge {
   id: string;
   gameTitle: string;
+  description: string;
   targetScore: number;
   reward: number;
   image?: string;

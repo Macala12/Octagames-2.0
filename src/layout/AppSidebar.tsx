@@ -53,6 +53,7 @@ const AppSidebar: React.FC = () => {
   );
 
   useEffect(() => {
+    console.log(subMenuHeight);
     if (openSubmenu !== null) {
       const key = `${openSubmenu.type}-${openSubmenu.index}`;
       if (subMenuRefs.current[key]) {

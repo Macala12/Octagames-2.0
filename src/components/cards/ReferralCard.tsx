@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router";
 
 const ACCENT = "#09f2a6";
-const ACCENT_TEXT = "#022b1e";
 
 interface Props {
   referredCount?: number;

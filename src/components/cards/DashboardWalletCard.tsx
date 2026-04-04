@@ -14,7 +14,7 @@ export default function DashboardWallet() {
               Withdrawalable Balance
             </span>
             <h4 className="mt-6 font-bold text-gray-800 text-[25px] dark:text-white/90">
-              ₦3,782<span className="text-[20px] text-white/40">.00</span>
+              ₦3,200,782<span className="text-[20px] text-white/40">.00</span>
             </h4>
             <a href="/wallet" className="absolute font-semibold right-0 top-0 text-[#000] text-[12px] bg-brand-500 px-4 py-2 rounded-[20px]">
                 Withdraw

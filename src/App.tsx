@@ -47,8 +47,8 @@ export default function App() {
             <Route index path="/home" element={<Home />} />
 
             {/* Others Page */}
-            <Route path="/wallet" element={<Wallet />} />
-            <Route path="/transaction" element={<TransactionHistory />} />
+            <Route path="/wallet" element={<Wallet balance={3700500} transactions={[]}  />} />
+            <Route path="/transaction" element={<TransactionHistory balance={0} transactions={[]} />} />
             <Route path="/withdraw" element={<Withdraw />} />
             <Route path="/challenges" element={<Challenges />} />
             <Route path="/notifications" element={<Notification />} />
@@ -57,55 +57,55 @@ export default function App() {
             <Route path="/profile" element={<UserProfiles />} />
             <Route path="/referral" element={<ReferralScreen />} />
 
-            <Route path="/tournament" element={<TournamentScreen data={  {
-                "id": "game_001",
-                "gameTitle": "Tower Master",
-                "gameImage": "http://localhost:5700/Assets/_games/_img/sushiroll.png",
-                "minPot": 5000,
-                "maxPot": 20000,
-                "endTime": "2026-02-03T01:22:52Z",
-                "playerCount": 12,
-                "maxPlayers": 20,
-                "joinCost": 100,
-                "leaderboard": [
-                  {
-                    "rank": 1,
-                    "username": "AceGamer",
-                    "score": 980,
-                    "reward": 100
-                  },
-                  {
-                    "rank": 2,
-                    "username": "ProX",
-                    "score": 870,
-                    "reward": 100
-                  },
-                  {
-                    "rank": 3,
-                    "username": "AceGamer",
-                    "score": 980,
-                    "reward": 100
-                  },
-                  {
-                    "rank": 4,
-                    "username": "ProX",
-                    "score": 870,
-                    "reward": 100
-                  },
-                  {
-                    "rank": 5,
-                    "username": "AceGamer",
-                    "score": 980,
-                    "reward": 100
-                  },
-                  {
-                    "rank": 6,
-                    "username": "ProX",
-                    "score": 870,
-                    "reward": 100
-                  }
-                ]
-              }} />} />
+            <Route path="/tournament" element={<TournamentScreen data={{
+              "id": "game_001",
+              "gameTitle": "Tower Master",
+              "gameImage": "http://localhost:5700/Assets/_games/_img/sushiroll.png",
+              "minPot": 5000,
+              "maxPot": 20000,
+              "endTime": "2026-02-03T01:22:52Z",
+              "playerCount": 12,
+              "maxPlayers": 20,
+              "joinCost": 100,
+              "leaderboard": [
+                {
+                  "rank": 1,
+                  "username": "AceGamer",
+                  "score": 980,
+                  "reward": 100
+                },
+                {
+                  "rank": 2,
+                  "username": "ProX",
+                  "score": 870,
+                  "reward": 100
+                },
+                {
+                  "rank": 3,
+                  "username": "AceGamer",
+                  "score": 980,
+                  "reward": 100
+                },
+                {
+                  "rank": 4,
+                  "username": "ProX",
+                  "score": 870,
+                  "reward": 100
+                },
+                {
+                  "rank": 5,
+                  "username": "AceGamer",
+                  "score": 980,
+                  "reward": 100
+                },
+                {
+                  "rank": 6,
+                  "username": "ProX",
+                  "score": 870,
+                  "reward": 100
+                }
+              ]
+            }} players={[]} />} />
             <Route path="/calendar" element={<Calendar />} />
             <Route path="/blank" element={<Blank />} />
 

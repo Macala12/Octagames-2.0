@@ -7,13 +7,9 @@ interface Props {
   completedDays?: boolean[];
 }
 
-const DAYS = ["S", "M", "T", "W", "T", "F", "S"];
-
 const UserStreak: React.FC<Props> = ({
   streak,
   nextMilestone = 7,
-  rewardCoins = 100,
-  completedDays = [true, true, true, true, true, true, true],
 }) => {
   const isCompleted = streak >= nextMilestone;
   const remaining = nextMilestone - streak;

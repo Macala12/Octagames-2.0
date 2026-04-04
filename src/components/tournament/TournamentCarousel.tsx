@@ -54,7 +54,6 @@ function TournamentCard({
 }) {
   const navigate = useNavigate();
   const timeLeft = useCountdown(tournament.endTime);
-  const bg = "#0a0a0a";
   const accent = "#0a0a0a";
 
   return (

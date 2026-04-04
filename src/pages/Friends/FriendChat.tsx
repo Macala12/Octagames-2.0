@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 // --- Types ---
 interface ChatPreview {
@@ -168,62 +168,62 @@ function GamesTab({ onJoinGame, onCreateGame }: { onJoinGame?: (c: string) => vo
 }
 
 // --- Chats tab ---
-function ChatsTab({ chats = [], onChatClick }: { chats: ChatPreview[]; onChatClick?: (c: ChatPreview) => void }) {
-  const [search, setSearch] = useState("");
-  const filtered = chats.filter(c => c.name.toLowerCase().includes(search.toLowerCase()));
+// function ChatsTab({ chats = [], onChatClick }: { chats: ChatPreview[]; onChatClick?: (c: ChatPreview) => void }) {
+//   const [search, setSearch] = useState("");
+//   const filtered = chats.filter(c => c.name.toLowerCase().includes(search.toLowerCase()));
 
-  return (
-    <div>
-      <div className="relative mb-4">
-        <input value={search} onChange={e => setSearch(e.target.value)}
-          placeholder="Search messages..."
-          className="w-full pl-10 pr-4 py-2.5 rounded-2xl text-[13px] outline-none
-            bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/8
-            text-gray-900 dark:text-white placeholder:text-gray-300 dark:placeholder:text-white/20" />
-        <svg className="absolute left-3.5 top-1/2 -translate-y-1/2" width="15" height="15"
-          viewBox="0 0 24 24" fill="none" stroke="var(--color-text-tertiary)" strokeWidth="2" strokeLinecap="round">
-          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-        </svg>
-      </div>
+//   return (
+//     <div>
+//       <div className="relative mb-4">
+//         <input value={search} onChange={e => setSearch(e.target.value)}
+//           placeholder="Search messages..."
+//           className="w-full pl-10 pr-4 py-2.5 rounded-2xl text-[13px] outline-none
+//             bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/8
+//             text-gray-900 dark:text-white placeholder:text-gray-300 dark:placeholder:text-white/20" />
+//         <svg className="absolute left-3.5 top-1/2 -translate-y-1/2" width="15" height="15"
+//           viewBox="0 0 24 24" fill="none" stroke="var(--color-text-tertiary)" strokeWidth="2" strokeLinecap="round">
+//           <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+//         </svg>
+//       </div>
 
-      {filtered.length === 0 ? (
-        <div className="text-center py-12">
-          <p className="text-[14px] font-bold text-gray-900 dark:text-white mb-1">No chats yet</p>
-          <p className="text-[12px] text-gray-400">Challenge a friend to start a conversation</p>
-        </div>
-      ) : (
-        filtered.map(chat => (
-          <button key={chat.id} onClick={() => onChatClick?.(chat)}
-            className="w-full flex items-center gap-3 py-3 border-b border-gray-100 dark:border-white/8 active:bg-gray-50 dark:active:bg-white/5 transition-colors">
-            <div className="relative w-[46px] h-[46px] rounded-full flex items-center justify-center flex-shrink-0 text-[15px] font-extrabold text-white"
-              style={{ background: chat.color }}>
-              {chat.initials}
-              {chat.online && (
-                <div className="absolute bottom-0.5 right-0.5 w-3 h-3 rounded-full border-2 border-white dark:border-[#0a0a0a]"
-                  style={{ background: ACCENT }} />
-              )}
-              {chat.unread > 0 && (
-                <div className="absolute -top-0.5 -right-0.5 w-[18px] h-[18px] rounded-full flex items-center justify-center text-[9px] font-extrabold border-2 border-white dark:border-[#0a0a0a]"
-                  style={{ background: ACCENT, color: ACCENT_TEXT }}>
-                  {chat.unread}
-                </div>
-              )}
-            </div>
-            <div className="flex-1 min-w-0 text-left">
-              <div className="flex items-center justify-between mb-0.5">
-                <span className="text-[14px] font-bold text-gray-900 dark:text-white">{chat.name}</span>
-                <span className="text-[11px]" style={{ color: chat.unread > 0 ? ACCENT : "var(--color-text-tertiary)" }}>
-                  {chat.time}
-                </span>
-              </div>
-              <p className="text-[12px] text-gray-400 truncate max-w-[220px]">{chat.lastMessage}</p>
-            </div>
-          </button>
-        ))
-      )}
-    </div>
-  );
-}
+//       {filtered.length === 0 ? (
+//         <div className="text-center py-12">
+//           <p className="text-[14px] font-bold text-gray-900 dark:text-white mb-1">No chats yet</p>
+//           <p className="text-[12px] text-gray-400">Challenge a friend to start a conversation</p>
+//         </div>
+//       ) : (
+//         filtered.map(chat => (
+//           <button key={chat.id} onClick={() => onChatClick?.(chat)}
+//             className="w-full flex items-center gap-3 py-3 border-b border-gray-100 dark:border-white/8 active:bg-gray-50 dark:active:bg-white/5 transition-colors">
+//             <div className="relative w-[46px] h-[46px] rounded-full flex items-center justify-center flex-shrink-0 text-[15px] font-extrabold text-white"
+//               style={{ background: chat.color }}>
+//               {chat.initials}
+//               {chat.online && (
+//                 <div className="absolute bottom-0.5 right-0.5 w-3 h-3 rounded-full border-2 border-white dark:border-[#0a0a0a]"
+//                   style={{ background: ACCENT }} />
+//               )}
+//               {chat.unread > 0 && (
+//                 <div className="absolute -top-0.5 -right-0.5 w-[18px] h-[18px] rounded-full flex items-center justify-center text-[9px] font-extrabold border-2 border-white dark:border-[#0a0a0a]"
+//                   style={{ background: ACCENT, color: ACCENT_TEXT }}>
+//                   {chat.unread}
+//                 </div>
+//               )}
+//             </div>
+//             <div className="flex-1 min-w-0 text-left">
+//               <div className="flex items-center justify-between mb-0.5">
+//                 <span className="text-[14px] font-bold text-gray-900 dark:text-white">{chat.name}</span>
+//                 <span className="text-[11px]" style={{ color: chat.unread > 0 ? ACCENT : "var(--color-text-tertiary)" }}>
+//                   {chat.time}
+//                 </span>
+//               </div>
+//               <p className="text-[12px] text-gray-400 truncate max-w-[220px]">{chat.lastMessage}</p>
+//             </div>
+//           </button>
+//         ))
+//       )}
+//     </div>
+//   );
+// }
 
 // --- Tournament card ---
 function ActiveTournamentCard({ tournament, onView }: { tournament: ActiveTournament; onView?: (id: string) => void }) {
@@ -313,16 +313,13 @@ function HistoryCard({ item, onView }: { item: TournamentHistoryItem; onView?: (
 
 // --- Main screen ---
 export default function FriendsScreen({
-  chats = [],
-  tournamentHistory = [{}],
+  tournamentHistory = [{id: "1", title: "fake title", reward: 100, date: "2025", status: "active", bg: "#fff", accent: "#000"}],
   activeTournament = null,
-  onChatClick,
   onJoinGame,
   onCreateGame,
   onViewTournament,
 }: Props) {
   const [mainTab, setMainTab]   = useState("friends");
-  const [friendsTab, setFriendsTab] = useState("games");
 
   return (
     <div className="px-2 pt-5 pb-10">

@@ -6,8 +6,6 @@ interface Props {
 }
 
 const BuyOctaCoinsCard: React.FC<Props> = ({
-  rate = 100,
-  currency = "₦",
 }) => {
   return (
     <div className="mt-6 rounded-xl p-5 bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 text-white shadow-lg relative overflow-hidden">
