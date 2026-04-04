@@ -1,25 +1,43 @@
-import PageBreadcrumb from "../components/common/PageBreadCrumb";
 import UserMetaCard from "../components/UserProfile/UserMetaCard";
 import UserInfoCard from "../components/UserProfile/UserInfoCard";
-import UserAddressCard from "../components/UserProfile/UserAddressCard";
+import Settings from "../components/UserProfile/Settings";
 import PageMeta from "../components/common/PageMeta";
+import ReferralCard from "../components/cards/ReferralCard";
 
 export default function UserProfiles() {
   return (
     <>
       <PageMeta
-        title="React.js Profile Dashboard | TailAdmin - Next.js Admin Dashboard Template"
-        description="This is React.js Profile Dashboard page for TailAdmin - React.js Tailwind CSS Admin Dashboard Template"
+        title="React.js Profile Dashboard | Octagames - Next.js Admin Dashboard Template"
+        description="This is React.js Profile Dashboard page for Octagames - React.js Tailwind CSS Admin Dashboard Template"
       />
-      <PageBreadcrumb pageTitle="Profile" />
-      <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] lg:p-6">
-        <h3 className="mb-5 text-lg font-semibold text-gray-800 dark:text-white/90 lg:mb-7">
-          Profile
-        </h3>
+      <div className="p-2 dark: lg:p-6">
         <div className="space-y-6">
+          <div className="flex items-cente mt-5 justify-between mb-5">
+            <div>
+              <h1 className="text-[20px] font-bold text-gray-900 dark:text-white">Profile</h1>
+              <p className="text-xs text-gray-400 mt-0.5">Play challenges and win instant cash</p>
+            </div>
+            <button onClick={() => setOpen(true)} className="w-9 h-9 rounded-full flex items-center justify-center bg-gray-100 dark:bg-white/10 border-gray-200 dark:border-white/10">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <circle cx="12" cy="7" r="4" />
+                <path d="M5.5 21a6.5 6.5 0 0 1 13 0" />
+              </svg>
+            </button>
+          </div>
           <UserMetaCard />
-          <UserInfoCard />
-          <UserAddressCard />
+          <ReferralCard />
+          {/* <UserInfoCard /> */}
+          <Settings />
         </div>
       </div>
     </>
