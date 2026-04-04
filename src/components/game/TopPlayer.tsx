@@ -42,7 +42,7 @@ const RankDisplay = ({
       <img
         src={image}
         alt={`rank-${rank}`}
-        className="absolute -left-13 top-0 z-0 inset-0 w-full h-[30%] object-contain pointer-events-none"
+        className="absolute -left-10 -top-3 z-0 inset-0 w-full h-[30%] object-contain pointer-events-none"
         onError={() => setImgError(true)}
       />
     );

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { Dropdown } from "../ui/dropdown/Dropdown";
 import { DropdownItem } from "../ui/dropdown/DropdownItem";
@@ -8,7 +8,9 @@ export default function NotificationDropdown() {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [notifying, setNotifying] = useState(true);
-  setNotifying(true);
+  useEffect(() => {
+    setNotifying(true);
+  }, []);
 
   function toggleDropdown() {
     setIsOpen(!isOpen);
