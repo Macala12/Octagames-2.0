@@ -58,7 +58,7 @@ const RankDisplay = ({
 // 🔷 Player Card
 const PlayerCard = ({ player }: { player: Player }) => {
   return (
-<div className="relative z-10 bg-white/10 mr-8 rounded-2xl p-4 flex flex-col items-center justify-center w-[100px] h-[110px]">
+<div className="relative z-10 bg-white/10 mr-3 rounded-2xl p-4 flex flex-col items-center justify-center w-[100px] h-[110px]">
       {/* Rank Background */}
       <RankDisplay rank={player.rank} image={player.rankImage} />
 

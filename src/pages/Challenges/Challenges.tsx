@@ -102,7 +102,7 @@ const challengeCardList: Challenge[]  = [
     reward: 1000,
     image: "lorem",
     label: "label",
-    color: "purple",
+    color: "blue",
   },
   {
     id: "3",
@@ -112,7 +112,7 @@ const challengeCardList: Challenge[]  = [
     reward: 1000,
     image: "lorem",
     label: "label",
-    color: "purple",
+    color: "green",
   },
 ];
 
