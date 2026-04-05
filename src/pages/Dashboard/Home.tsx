@@ -1,3 +1,4 @@
+import { useState } from "react";
 import PageMeta from "../../components/common/PageMeta";
 import DashboardWallet from "../../components/cards/DashboardWalletCard";
 import { TournamentCarousel } from "../../components/tournament/TournamentCarousel";
@@ -12,8 +13,10 @@ import { GameGrid } from "../../components/game/GameGrid";
 import QuickActions from "../../components/game/QuickAction";
 import WinnersMarquee from "../../components/carousel/RecentWinners";
 import TopPlayers from "../../components/game/TopPlayer";
+import GameCanvas from "../../components/game/GameCanvas";
 
 export default function Home() {
+  const [isGameOpen, setIsGameOpen] = useState(false);
   const games = [
     {
       id: "1",
@@ -57,6 +60,7 @@ export default function Home() {
       endTime: "2026-04-01T15:00:00Z",
     },
   ];
+
   return (
     <>
       <PageMeta
@@ -109,8 +113,8 @@ export default function Home() {
 
             <GameGrid 
               games={games}
-              onGameClick={(game) => {
-              console.log("Clicked:", game);
+              onGameClick={() => {
+              setIsGameOpen(true);
               }}
             />            
           </div>
@@ -132,6 +136,15 @@ export default function Home() {
             <TournamentCarousel
               tournaments={tournaments}
               onPlay={(t) => console.log("Play", t)}
+            />
+
+            <GameCanvas
+              isOpen={isGameOpen}
+              onClose={() => setIsGameOpen(false)}
+              gameUrl="https://your-game-url.com"
+              gameTitle="Flappy Battle"
+              wager={100}
+              sessionId="abc123"
             />
           </div>          
         </div>

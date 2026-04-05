@@ -89,7 +89,7 @@ export default function TopPlayers({ players }: Props) {
     <div className="rounded-2xl">
       {/* Title */}
       <h2 className="text-white font-bold text-md mb-4">
-        Top Players in Nigeria 🇳🇬
+        Top Players in Africa 🌍
       </h2>
 
       {/* Players Row */}

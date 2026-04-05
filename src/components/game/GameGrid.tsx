@@ -36,7 +36,7 @@ export const GameGrid: React.FC<GameGridProps> = ({
             <img
               src={game.image}
               alt={game.title}
-              className="w-100 h-[100%] object-cover group-hover:scale-105 transition-transform duration-200"
+              className="w-100 h-[100%] max-w-[120px] object-cover group-hover:scale-105 transition-transform duration-200"
             />
           </div>
 

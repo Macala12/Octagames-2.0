@@ -38,6 +38,7 @@ import EditProfilePage from "./pages/EditProfile";
 import EditSecurityPage from "./pages/EditSecurity";
 import { ChatsScreen } from "./pages/Friends/Chat";
 import ChatRoom from "./pages/Friends/ChatRoom";
+import CreateTournament from "./pages/Friends/CreateTournament";
 
 export default function App() {
   return (
@@ -56,6 +57,7 @@ export default function App() {
             <Route path="/challenges" element={<Challenges />} />
             <Route path="/notifications" element={<Notification />} />
             <Route path="/friends" element={<Friends />} />
+            <Route path="/create" element={<CreateTournament />} />
             <Route path="/chats" element={<ChatsScreen />} />
             <Route path="/chat-room" element={<ChatRoom />} />
             <Route path="/octacoin" element={<Octacoin />} />

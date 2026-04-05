@@ -142,7 +142,7 @@ function GamesTab({ onJoinGame, onCreateGame }: { onJoinGame?: (c: string) => vo
   return (
     <div className="flex flex-col gap-5" >
       {/* Hero banner */}
-      <div className="relative rounded-[18px] p-4 overflow-hidden flex items-center gap-3" style={{ background: "#0a0a0a" }}>
+      <div className="relative rounded-[18px] p-4 overflow-hidden flex items-center gap-3" style={{ background: "#0a0a0a" }} onClick={() => {navigate('/create')}}>
         <svg className="absolute inset-0 w-full h-full" viewBox="0 0 360 90" preserveAspectRatio="xMidYMid slice">
           <defs><pattern id="gbd" x="0" y="0" width="18" height="18" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="0.7" fill="rgba(255,255,255,0.06)"/></pattern></defs>
           <rect width="360" height="90" fill="url(#gbd)"/>
