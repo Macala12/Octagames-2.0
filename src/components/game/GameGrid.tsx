@@ -24,7 +24,7 @@ export const GameGrid: React.FC<GameGridProps> = ({
   onGameClick,
 }) => {
   return (
-    <div className="w-100 h-[100%] overflow-x-auto no-scrollbar grid grid-cols-3 sm:grid-cols-3 gap-4">
+    <div className="w-90 h-[100%] overflow-x-auto no-scrollbar grid grid-cols-3 sm:grid-cols-3 gap-4">
       {games.map((game) => (
         <div
           key={game.id}
