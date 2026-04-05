@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router";
 
 // --- Types ---
 interface ChatPreview {
@@ -84,11 +85,62 @@ function TabPill({ tabs, active, onChange }: {
   );
 }
 
+// ─── Message Banner (fixed) ────────────────────────────────────────────────
+const MessageBanner = ({ count = 10, onClick }: { count?: number; onClick?: () => void }) => (
+  <div onClick={onClick}
+    className="relative rounded-[18px] p-4 overflow-hidden flex items-center gap-3 cursor-pointer active:scale-[0.98] transition-transform"
+    style={{ background: "#09f2a6" }}>
+
+    {/* Subtle dot + blob bg */}
+    <svg className="absolute inset-0 w-full h-full" viewBox="0 0 360 72"
+      preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <pattern id="gbd" x="0" y="0" width="18" height="18" patternUnits="userSpaceOnUse">
+          <circle cx="1" cy="1" r="0.7" fill="rgba(0,0,0,0.06)"/>
+        </pattern>
+      </defs>
+      <rect width="360" height="72" fill="url(#gbd)"/>
+      <ellipse cx="310" cy="20" rx="100" ry="70" fill="rgba(0,0,0,0.06)"/>
+      <ellipse cx="40"  cy="60" rx="80"  ry="55" fill="rgba(0,0,0,0.05)"/>
+    </svg>
+
+    {/* Icon tile */}
+    <div className="relative w-11 h-11 rounded-[14px] flex items-center justify-center flex-shrink-0"
+      style={{ background: "rgba(0,0,0,0.12)", border: "1px solid rgba(0,0,0,0.1)" }}>
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
+        stroke="#022b1e" strokeWidth="2" strokeLinecap="round">
+        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+        <circle cx="9" cy="7" r="4"/>
+        <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+      </svg>
+    </div>
+
+    {/* Text */}
+    <div className="relative flex-1 min-w-0">
+      <p className="text-[15px] font-extrabold mb-0.5" style={{ color: "#022b1e" }}>Messages</p>
+      <p className="text-[12px]" style={{ color: "rgba(2,43,30,0.6)" }}>
+        You have <span className="font-extrabold" style={{ color: "#022b1e" }}>{count}</span> new messages
+      </p>
+    </div>
+
+    {/* Arrow — vertically centered on the right */}
+    <div className="relative w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
+      style={{ background: "rgba(0,0,0,0.1)" }}>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+        stroke="#022b1e" strokeWidth="2.5" strokeLinecap="round">
+        <path d="M9 18l6-6-6-6"/>
+      </svg>
+    </div>
+  </div>
+);
+
 // --- Games tab ---
 function GamesTab({ onJoinGame, onCreateGame }: { onJoinGame?: (c: string) => void; onCreateGame?: () => void }) {
   const [code, setCode] = useState("");
+  const navigate = useNavigate();
+
   return (
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col gap-5" >
       {/* Hero banner */}
       <div className="relative rounded-[18px] p-4 overflow-hidden flex items-center gap-3" style={{ background: "#0a0a0a" }}>
         <svg className="absolute inset-0 w-full h-full" viewBox="0 0 360 90" preserveAspectRatio="xMidYMid slice">
@@ -110,7 +162,16 @@ function GamesTab({ onJoinGame, onCreateGame }: { onJoinGame?: (c: string) => vo
             Invite friends, compete together, and see who tops the leaderboard.
           </p>
         </div>
+          <div className="relative w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
+            style={{ background: "#09f2a47e" }}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+              stroke="#000" strokeWidth="2.5" strokeLinecap="round">
+              <path d="M9 18l6-6-6-6"/>
+            </svg>
+          </div>
       </div>
+
+      <MessageBanner onClick={() => {navigate('/chats')}} />
 
       {/* Game code input */}
       <div>

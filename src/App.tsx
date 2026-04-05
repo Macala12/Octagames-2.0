@@ -21,6 +21,7 @@ import { ScrollToTop } from "./components/common/ScrollToTop";
 {/* Navigations */}
 import Home from "./pages/Dashboard/Home";
 import Friends from "./pages/Friends/FriendChat";
+
 import Wallet from "./pages/Wallet/Wallet";
 import TransactionHistory from "./pages/Wallet/TransactionHistory";
 import Withdraw from "./pages/Wallet/Withdraw";
@@ -35,6 +36,8 @@ import ReferralScreen from "./pages/Referral";
 /* Profile page - Edit */
 import EditProfilePage from "./pages/EditProfile";
 import EditSecurityPage from "./pages/EditSecurity";
+import { ChatsScreen } from "./pages/Friends/Chat";
+import ChatRoom from "./pages/Friends/ChatRoom";
 
 export default function App() {
   return (
@@ -53,6 +56,8 @@ export default function App() {
             <Route path="/challenges" element={<Challenges />} />
             <Route path="/notifications" element={<Notification />} />
             <Route path="/friends" element={<Friends />} />
+            <Route path="/chats" element={<ChatsScreen />} />
+            <Route path="/chat-room" element={<ChatRoom />} />
             <Route path="/octacoin" element={<Octacoin />} />
             <Route path="/profile" element={<UserProfiles />} />
             <Route path="/referral" element={<ReferralScreen />} />

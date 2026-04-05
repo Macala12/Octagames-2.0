@@ -127,7 +127,7 @@ const AppSidebar: React.FC = () => {
 
         /* MOBILE (DEFAULT) */
         bottom-0 left-0 w-full h-[70px]
-        flex flex-row items-center justify-around border-t
+        flex flex-row items-center justify-around
 
         /* DESKTOP */
         lg:top-0 lg:left-0 lg:h-screen lg:border-r lg:border-t-0

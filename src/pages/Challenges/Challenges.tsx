@@ -92,7 +92,7 @@ const challengeCardList: Challenge[]  = [
     reward: 1000,
     image: "lorem",
     label: "label",
-    color: "purple",
+    color: "gold",
   },
   {
     id: "2",
