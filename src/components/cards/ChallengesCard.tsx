@@ -1,3 +1,5 @@
+import { ChevronRight } from "lucide-react";
+
 interface Challenge {
   id: string;
   gameTitle: string;
@@ -34,7 +36,7 @@ const GamepadIcon = () => (
 
 export default function ChallengeList({ challenges, onClick }: Props) {
   return (
-    <div className="flex flex-col gap-3">
+    <div className="mt-4 flex flex-col">
       {challenges.map((challenge) => {
         const { bg, accent } = colorMap[challenge.color ?? "purple"];
 
@@ -42,7 +44,7 @@ export default function ChallengeList({ challenges, onClick }: Props) {
           <div
             key={challenge.id}
             onClick={() => onClick?.(challenge)}
-            className="flex items-stretch rounded-[10px] overflow-hidden bg-white cursor-pointer active:scale-[0.98] transition-transform"
+            className="flex items-stretch overflow-hidden bg-[#141414] cursor-pointer active:scale-[0.98] transition-transform"
           >
             {/* Left image panel */}
             <div
@@ -69,22 +71,25 @@ export default function ChallengeList({ challenges, onClick }: Props) {
                 ) : (
                   <GamepadIcon />
                 )}
+                
               </div>
 
               <span className="relative text-[10px] font-semibold uppercase tracking-wide text-white/80">
                 {challenge.label ?? "Game"}
               </span>
+
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#141414]" />
             </div>
 
             {/* Right content */}
             <div className="flex flex-col justify-between flex-1 min-w-0 p-3.5">
               <div>
-                <p className="text-[15px] font-semibold text-gray-900 truncate">
+                <p className="text-[18px] font-extrabold leading-tight mb-2 line-clamp-2">
                   {challenge.gameTitle}
                 </p>
                 <p className="text-xs text-gray-400 mt-0.5 leading-snug">
                   Reach a score of{" "}
-                  <span className="text-gray-700 font-medium">
+                  <span className="text-white font-medium">
                     {challenge.targetScore.toLocaleString()}
                   </span>{" "}
                   to win
@@ -93,18 +98,18 @@ export default function ChallengeList({ challenges, onClick }: Props) {
 
               <div className="flex items-center justify-between mt-3">
                 <div>
-                  <p className="text-[10px] text-gray-400 mb-0.5">Prize</p>
-                  <p className="text-lg font-bold text-gray-900">
+                  <p className="text-[11px] text-gray-400 mb-0.5">Win</p>
+                  <p className="text-[18px] font-extrabold leading-tight mb-2 line-clamp-2">
                     ₦{challenge.reward.toLocaleString()}
                   </p>
                 </div>
 
                 <button
                   onClick={(e) => { e.stopPropagation(); onClick?.(challenge); }}
-                  className="text-xs font-semibold text-white px-4 py-2 rounded-full"
-                  style={{ background: bg }}
+                  className="flex gap-1 text-xs font-semibold text-white px-4 py-2"
+                  style={{ background: "#7C3AED" }}
                 >
-                  Play Now →
+                  Play Now <ChevronRight size={15} />
                 </button>
               </div>
             </div>

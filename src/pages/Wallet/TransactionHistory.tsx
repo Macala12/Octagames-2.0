@@ -7,7 +7,7 @@ export interface Transaction {
   status: "success" | "pending" | "failed";
 }
 
-const ACCENT = "#09f2a6";
+const ACCENT = "#7C3AED";
 const ACCENT_TEXT = "#022b1e";
 
 // --- Status Badge ---

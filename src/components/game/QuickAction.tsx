@@ -5,6 +5,7 @@ import gameImg from "../../images/towermaster.png";
 import gameImg2 from "../../images/subway.jpeg";
 import BottomSheet from "../ui/bottom-sheet/BottomSheet";
 import PlayStrangerContent from "../bottom-sheet-components/PlayStranger";
+import NeubrutalistCard from "../ui/cards/NeuCard";
 
 interface ActionItem {
   title: string;
@@ -79,57 +80,72 @@ const actions: ActionItem[] = [
   },
 ];
 
-const ACCENT = "#09f2a6";
+const ACCENT = "#7C3AED";
 
 const QuickActions: React.FC = () => {
   const [open, setOpen] = useState(false);
 
   return (
     <div className="mt-6">
+      {/* <div>
+        <p className="text-[17px] font-semibold text-gray-900 dark:text-white">
+          Quick Play
+        </p>
+        <p className="text-xs text-gray-400 mt-0.5 mb-2">Select a pack to continue</p>
+      </div> */}
       <div className="grid grid-cols-2 gap-3">
         {actions.map((action) => (
-          <Link
-            key={action.title}
-            to={''}
-            className="relative rounded-[20px] p-4 flex flex-col justify-between overflow-hidden active:scale-[0.97] transition-transform"
-            style={{ background: action.bg, minHeight: 170 }}
-            onClick={() => setOpen(true)}
+          <NeubrutalistCard
+            mainColor="#7C3AED"
+            shadowColor="#7C3AED"
+            pressable
+            shadowOffsetX={5}
+            shadowOffsetY={5}
           >
-            {/* Decorative circles */}
-            <div className="absolute -top-8 -right-8 w-24 h-24 rounded-full pointer-events-none"
-              style={{ background: action.decorColor }} />
-            <div className="absolute bottom-5 right-5 w-14 h-14 rounded-full pointer-events-none"
-              style={{ background: action.decorColor, opacity: 0.6 }} />
+            <Link
+              key={action.title}
+              to={''}
+              className="relative rounded-[7px] p-4 flex flex-col justify-between overflow-hidden active:scale-[0.97] transition-transform"
+              style={{ background: action.bg, minHeight: 170 }}
+              onClick={() => setOpen(true)}
+            >
+              {/* Decorative circles */}
+              {/* <div className="absolute -top-8 -right-8 w-24 h-24 rounded-full pointer-events-none"
+                style={{ background: action.decorColor }} />
+              <div className="absolute bottom-5 right-5 w-14 h-14 rounded-full pointer-events-none"
+                style={{ background: action.decorColor, opacity: 0.6 }} /> */}
 
-            {/* Win badge */}
-            {action.badge && (
-              <div className="absolute top-3.5 right-3.5 rounded-full px-2 py-0.5"
-                style={{ background: "rgba(9,242,166,0.15)", border: "1px solid rgba(9,242,166,0.3)" }}>
-                <span className="text-[10px] font-bold" style={{ color: ACCENT }}>
-                  {action.badge}
-                </span>
+              {/* Win badge */}
+              {action.badge && (
+                <div className="absolute top-3.5 right-3.5 rounded-full px-2 pb-1.5"
+                  style={{ background: "#7c3aeda0", border: "1px solid #7C3AED" }}>
+                  <span className="text-[10px] font-bold text-white">
+                    {action.badge}
+                  </span>
+                </div>
+              )}
+
+              {/* Icon */}
+              <div className="w-11 h-11 rounded-[14px] flex items-center justify-center"
+                style={{ background: action.iconBg }}>
+                {action.icon}
               </div>
-            )}
 
-            {/* Icon */}
-            <div className="w-11 h-11 rounded-[14px] flex items-center justify-center"
-              style={{ background: action.iconBg }}>
-              {action.icon}
-            </div>
-
-            {/* Text + CTA */}
-            <div className="mt-4">
-              <p className="text-[15px] font-bold text-white mb-1">{action.title}</p>
-              <p className="text-[11px] leading-relaxed" style={{ color: "rgba(255,255,255,0.5)" }}>
-                {action.subtitle}
-              </p>
-              <div className="mt-3 inline-flex items-center gap-1 rounded-full px-3 py-1.5"
-                style={{ background: ACCENT }}>
-                <span className="text-[11px] font-bold" style={{ color: "#022b1e" }}>{action.cta}</span>
-                <span className="text-[11px]" style={{ color: "#022b1e" }}>→</span>
+              {/* Text + CTA */}
+              <div className="mt-4">
+                <p className="text-[15px] font-bold text-white mb-1">{action.title}</p>
+                <p className="text-[11px] leading-relaxed" style={{ color: "rgba(255,255,255,0.5)" }}>
+                  {action.subtitle}
+                </p>
+                <div className="mt-3 inline-flex items-center gap-1 rounded-[7px] px-3 py-1.5"
+                  style={{ background: ACCENT }}>
+                  <span className="text-[11px] font-bold text-white">{action.cta}</span>
+                  <span className="text-[11px] text-white">→</span>
+                </div>
               </div>
-            </div>
-          </Link>
+            </Link>            
+          </NeubrutalistCard>
+
         ))}
       </div>
 

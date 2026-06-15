@@ -1,50 +1,56 @@
-import { useEffect, useRef } from "react";
-
+import { Wallet, Coins, ChevronDown } from "lucide-react";
 import NotificationDropdown from "../components/header/NotificationDropdown";
 import UserHeader from "../components/header/UserHeader";
 
 const AppHeader: React.FC = () => {
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  // ⌘ + K shortcut (keep for desktop search later)
-  useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if ((event.metaKey || event.ctrlKey) && event.key === "k") {
-        event.preventDefault();
-        inputRef.current?.focus();
-      }
-    };
-
-    document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
-  }, []);
-
   return (
-    <header className="sticky top-0 z-[999] w-full bg-white dark:bg-[#0a0a0a]">
-      <div className="flex items-center justify-between px-4 py-3 lg:px-6">
+    <header className="absolute top-0 z-[999] w-full">
+      <div className="flex items-center justify-between px-3 py-2.5 max-w-[1400px] mx-auto gap-3">
 
-        {/* 🔥 LEFT: PAGE TITLE (MOBILE APP STYLE) */}
-        <div className="text-lg font-semibold text-gray-800 dark:text-white">
-          {/* {getTitle()} */}
-          <UserHeader />
+        {/* LEFT: BRAND */}
+        <div className="flex items-center gap-2 shrink-0">
+          <div className="w-7 h-7 rounded-lg bg-zinc-900 flex items-center justify-center shrink-0">
+            <span className="text-[#FFD60A] font-black text-[13px]">O</span>
+          </div>
+          <span className="text-[16px] font-black tracking-tight text-zinc-900 hidden xs:block">
+            Octa<span className="text-[#FFD60A]">Games</span>
+          </span>
         </div>
 
-        {/* 🔥 RIGHT SECTION */}
-        <div className="flex items-center gap-3">
-          {/* 🔔 NOTIFICATIONS */}
+        {/* RIGHT: PILLS + NOTIF + USER */}
+        <div className="flex items-center gap-1.5 min-w-0">
+
+          {/* Wallet Pill */}
+          <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-zinc-100 border border-zinc-200 hover:bg-zinc-200 hover:border-zinc-300 cursor-pointer group transition-colors shrink-0">
+            <Wallet size={13} className="text-emerald-600 shrink-0" />
+            <div className="flex flex-col leading-none gap-[2px]">
+              <span className="text-[9px] font-bold text-zinc-400 uppercase tracking-wide hidden sm:block">
+                Wallet
+              </span>
+              <span className="text-[12px] font-black text-zinc-900 tabular-nums whitespace-nowrap">
+                ₦24,500
+              </span>
+            </div>
+          </div>
+
+          {/* OctaCoin Pill */}
+          <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-zinc-100 border border-zinc-200 hover:bg-zinc-200 hover:border-zinc-300 cursor-pointer group transition-colors shrink-0">
+            <Coins size={13} className="text-amber-600 shrink-0" />
+            <div className="flex flex-col leading-none gap-[2px]">
+              <span className="text-[9px] font-bold text-zinc-400 uppercase tracking-wide hidden sm:block">
+                OctaCoin
+              </span>
+              <span className="text-[12px] font-black text-amber-700 tabular-nums whitespace-nowrap">
+                1,250
+              </span>
+            </div>
+          </div>
+
+          {/* Notifications */}
           <NotificationDropdown />
-        </div>
-      </div>
 
-      {/* 🔍 DESKTOP SEARCH (OPTIONAL KEEP) */}
-      <div className="hidden lg:block px-6 pb-3">
-        <div className="relative max-w-md">
-          <input
-            ref={inputRef}
-            type="text"
-            placeholder="Search..."
-            className="w-full h-10 pl-4 pr-10 rounded-lg border border-gray-200 dark:border-gray-800 bg-transparent text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/20"
-          />
+          {/* User */}
+          <UserHeader />
         </div>
       </div>
     </header>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import NeubrutalistCard from "../../components/ui/cards/NeuCard";
 
 export interface LeaderboardPlayer {
   rank: number;
@@ -33,7 +34,7 @@ interface Props {
   players: LeaderboardPlayer[];
 }
 
-const ACCENT      = "#09f2a6";
+const ACCENT      = "#7C3AED";
 const ACCENT_TEXT = "#022b1e";
 
 // --- Countdown ---
@@ -81,104 +82,140 @@ export function Podium({ players }: Props) {
   const first  = players.find(p => p.rank === 1);
   const second = players.find(p => p.rank === 2);
   const third  = players.find(p => p.rank === 3);
-
+ 
   const slots = [
-    { player: second, rank: 2, color: "#94a3b8", topColor: "#b8c5d6", textColor: "#fff",    barH: 100, avatarSize: 52, labelColor: "#78350F", rewardColor: "#fff",    rewardBg: "rgba(148,163,184,0.15)", rewardBorder: "rgba(148,163,184,0.3)"  },
-    { player: first,  rank: 1, color: "#FBBF24", topColor: "#fde68a", textColor: "#78350F", barH: 136, avatarSize: 68, labelColor: "#78350F", rewardColor: "#FBBF24", rewardBg: "rgba(251,191,36,0.2)",    rewardBorder: "rgba(251,191,36,0.4)"   },
-    { player: third,  rank: 3, color: "#CD7F32", topColor: "#dba87a", textColor: "#fff",    barH: 80,  avatarSize: 46, labelColor: "#fff",    rewardColor: "#CD7F32", rewardBg: "rgba(205,127,50,0.15)",  rewardBorder: "rgba(205,127,50,0.3)"   },
+    { 
+      player: second, 
+      rank: 2, 
+      emoji: "🥈",
+      color: "#94a3b8", 
+      barH: 90, 
+      avatarSize: 56,
+    },
+    { 
+      player: first,  
+      rank: 1, 
+      emoji: "🥇",
+      color: "#FBBF24", 
+      barH: 120, 
+      avatarSize: 72,
+    },
+    { 
+      player: third,  
+      rank: 3, 
+      emoji: "🥉",
+      color: "#CD7F32", 
+      barH: 70,  
+      avatarSize: 52,
+    },
   ];
-
-  const label = ["2nd", "1st", "3rd"];
-  const animDelay = ["0.5s", "0s", "1s"];
-
+ 
+  const animDelay = ["0.2s", "0s", "0.4s"];
+ 
   return (
-    <div className="rounded-[24px] overflow-hidden relative">
-
-      {/* Content */}
-      <div className="relative z-10 px-4 pt-5 pb-0">
-
-        {/* Crown */}
-        <div className="flex justify-center mb-1">
-          <span className="text-[28px]"
-            style={{ filter: "drop-shadow(0 0 8px rgba(251,191,36,0.8))", display: "block",
-              animation: "crownPulse 2s ease-in-out infinite" }}>
-            👑
-          </span>
-        </div>
-
-        {/* Avatar row */}
-        <div className="flex items-end justify-center gap-1.5 mb-0">
-          {slots.map((slot, i) => slot.player && (
-            <div key={slot.rank} className="flex-1 flex flex-col items-center">
-              <div className="relative mb-2" style={{ animation: `floatAvatar 3s ease-in-out infinite`, animationDelay: animDelay[i] }}>
-                {/* Glow halo */}
-                <div className="absolute rounded-full" style={{
-                  inset: -5, background: `${slot.color}40`,
-                  filter: "blur(6px)",
-                }} />
-                {/* Pulse ring — 1st only */}
-                {slot.rank === 1 && (
-                  <div className="absolute rounded-full"
-                    style={{ inset: -3, border: `2px solid ${slot.color}99`,
-                      animation: "glowPulse 2s ease-in-out infinite" }} />
-                )}
-                <img
-                  src={slot.player.avatar ??
-                    `https://api.dicebear.com/9.x/big-smile/svg?seed=${slot.player.username}&radius=50&backgroundColor=b6e3f4,c0aede,ffd5dc,ffdfbf`}
-                  alt={slot.player.username}
-                  className="relative block rounded-full"
-                  style={{ width: slot.avatarSize, height: slot.avatarSize, border: `${slot.rank === 1 ? 3 : 2.5}px solid ${slot.color}` }}
-                />
-                {/* Rank badge */}
-                <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-extrabold border-2"
-                  style={{ background: slot.color, color: slot.labelColor, borderColor: "rgba(255,255,255,0.25)" }}>
+    <div className="mb-8">
+      
+      {/* Floating crown for winner */}
+      <div className="flex justify-center mb-4">
+        <span 
+          className="text-5xl inline-block"
+          style={{ 
+            animation: "bounce 2s ease-in-out infinite",
+            filter: "drop-shadow(0 4px 12px rgba(251,191,36,0.3))"
+          }}
+        >
+          👑
+        </span>
+      </div>
+ 
+      {/* Players */}
+      <div className="flex items-end justify-center gap-10 mb-2">
+        {slots.map((slot, i) => slot.player && (
+          <div 
+            key={slot.rank} 
+            className="flex flex-col items-center"
+            style={{ 
+              animation: `slideUp 0.5s ease-out`,
+              animationDelay: animDelay[i],
+              animationFillMode: "backwards"
+            }}
+          >
+            {/* Avatar */}
+            <div className="relative mb-3">
+              <img
+                src={slot.player.avatar ?? 
+                  `https://api.dicebear.com/9.x/bottts-neutral/svg?seed=${slot.player.username}&radius=50&backgroundColor=ffd5dc`}
+                alt={slot.player.username}
+                className="rounded-full bg-white"
+                style={{ 
+                  width: slot.avatarSize, 
+                  height: slot.avatarSize,
+                  border: `4px solid ${slot.color}`,
+                  boxShadow: `0 4px 12px ${slot.color}40`,
+                }}
+              />
+              
+              {/* Medal emoji */}
+              <div 
+                className="absolute -top-2 -right-2 text-2xl"
+                style={{
+                  filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.2))",
+                  animation: slot.rank === 1 ? "wiggle 1s ease-in-out infinite" : "none"
+                }}
+              >
+                {slot.emoji}
+              </div>
+            </div>
+ 
+            {/* Username */}
+            <p className="text-sm font-bold text-white/80 mb-2 text-center max-w-[80px] truncate">
+              {slot.player.username}
+            </p>
+ 
+            {/* Podium bar */}
+            <div 
+              className="w-20 rounded-t-2xl flex flex-col items-center justify-center gap-1 relative overflow-hidden"
+              style={{ 
+                height: slot.barH,
+                backgroundColor: slot.color,
+              }}
+            >
+              {/* Glossy shine */}
+              <div 
+                className="absolute top-0 left-0 right-0 h-1/3"
+                style={{
+                  background: "linear-gradient(180deg, rgba(255,255,255,0.3) 0%, transparent 100%)",
+                  borderRadius: "16px 16px 0 0"
+                }}
+              />
+ 
+              {/* Score */}
+              <div className="relative z-10">
+                <div className="text-2xl font-black text-center text-white mb-1">
                   {slot.rank}
                 </div>
-              </div>
-              <p className="text-[11px] font-bold text-white/70 mb-1.5 text-center truncate w-full">
-                {slot.player.username}
-              </p>
-            </div>
-          ))}
-        </div>
-
-        {/* Bar row */}
-        <div className="flex items-end justify-center gap-1.5">
-          {slots.map((slot, i) => slot.player && (
-            <div key={slot.rank} className="flex-1 flex flex-col overflow-hidden">
-              {/* 3D top cap */}
-              <div className="rounded-t-[4px]"
-                style={{ height: slot.rank === 1 ? 8 : 6, background: slot.topColor,
-                  boxShadow: slot.rank === 1 ? `0 -2px 12px ${slot.color}CC` : "none" }} />
-              {/* Front face */}
-              <div className="relative flex flex-col items-center justify-center gap-1 overflow-hidden"
-                style={{ height: slot.barH, background: `linear-gradient(180deg, ${slot.color} 0%, ${slot.color}99 100%)` }}>
-                {/* Shimmer */}
-                <div className="absolute top-0 bottom-0 w-8"
-                  style={{ background: "linear-gradient(90deg,transparent,rgba(255,255,255,0.08),transparent)",
-                    animation: "shimmer 2.5s ease-in-out infinite", animationDelay: `${i * -0.8}s` }} />
-                <span className="relative text-[14px] font-extrabold" style={{ color: slot.textColor }}>
-                  {label[i]}
-                </span>
-                <div className="relative rounded-full px-2 py-0.5"
-                  style={{ background: "rgba(0,0,0,0.25)", border: slot.rank === 1 ? "1px solid rgba(255,255,255,0.2)" : "none" }}>
-                  <span className="text-[11px] font-bold text-white">
+                <div className="bg-black/20 rounded-full px-3 py-1">
+                  <span className="text-xs font-bold text-white">
                     {slot.player.score.toLocaleString()}
                   </span>
                 </div>
               </div>
-              {/* Reward strip */}
-              <div className="flex items-center justify-center gap-1 py-1.5"
-                style={{ background: slot.rewardBg, border: `1px solid ${slot.rewardBorder}` }}>
-                <span className="text-[13px]">🪙</span>
-                <span className="text-[13px] font-extrabold" style={{ color: slot.rewardColor }}>
-                  {slot.player.reward}
-                </span>
-              </div>
             </div>
-          ))}
-        </div>
-
+ 
+            {/* Reward badge */}
+            <div 
+              className="mt-4 px-3 py-1.5 rounded-full flex items-center gap-1.5"
+              style={{
+                backgroundColor: `${slot.color}30`
+              }}
+            >
+              <span className="text-sm">💰</span>
+              <span className="text-sm font-extrabold" style={{ color: slot.color }}>
+                {slot.player.reward}
+              </span>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -264,7 +301,6 @@ export default function TournamentScreen({
 
   return (
     <div className="dark: overflow-hidden">
-
       {/* Hero */}
       <div className="relative h-[300px] overflow-hidden" style={{ background: "#0a1628" }}>
         {data.gameImage ? (
@@ -327,7 +363,7 @@ export default function TournamentScreen({
             <span className="text-[#FBBF24]">🪙</span>{data.maxPot.toLocaleString()}
           </p>
           <p className="text-[12px] mt-1" style={{ color: "rgba(255,255,255,0.5)" }}>Victory Pot</p>
-          <p className="text-[14px] text-gray-300 mt-1">
+          <p className="text-[12px] text-gray-300 mt-1">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti alias quod harum assumenda nobis nam quas, est mollitia iure.
           </p>
         </div>
@@ -358,7 +394,7 @@ export default function TournamentScreen({
               {["angel", "stargal", "solace"].map((seed, i) => (
                 <img key={seed}
                   src={`https://api.dicebear.com/9.x/big-smile/svg?seed=${seed}&radius=50&backgroundColor=b6e3f4`}
-                  className="w-7 h-7 rounded-full border-2 border-white dark:border-[#0a0a0a]"
+                  className="w-7 h-7 rounded-full border-2 border-[#7C3AED] dark:border-[#0a0a0a]"
                   style={{ marginLeft: i > 0 ? -10 : 0, zIndex: 3 - i }}
                 />
               ))}
@@ -390,97 +426,45 @@ export default function TournamentScreen({
         </button>
       </div>
 
-      {/* Share banner */}
-      <div className="mx-5 mb-3 mt-6 rounded-[20px] p-4 relative overflow-hidden" style={{ background: "#0a0a0a" }}>
-        <svg className="absolute inset-0 w-full h-full" viewBox="0 0 366 120" preserveAspectRatio="xMidYMid slice">
-          <defs><pattern id="spd" x="0" y="0" width="18" height="18" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="0.7" fill="rgba(255,255,255,0.05)"/></pattern></defs>
-          <rect width="366" height="120" fill="url(#spd)"/>
-          <ellipse cx="320" cy="20" rx="120" ry="90" fill="#09f2a6" opacity="0.08"/>
-          <ellipse cx="40"  cy="100" rx="90" ry="65" fill="#7C3AED" opacity="0.1"/>
-          <circle cx="320" cy="120" r="100" fill="none" stroke="#09f2a6" strokeWidth="0.5" opacity="0.15"/>
-        </svg>
-        <div className="relative flex items-start justify-between gap-3 mb-4">
-          <div>
-            <p className="text-[18px] font-extrabold text-white leading-snug mb-1.5">
-              Share tournament<br />and earn Octacoins
-            </p>
-            <p className="text-[14px] leading-relaxed" style={{ color: "rgba(255,255,255,0.45)" }}>
-              Earn <span className="font-bold" style={{ color: ACCENT }}>🪙 40 coins</span> for every new friend you invite.
-            </p>
+      <NeubrutalistCard
+        mainColor="#7C3AED"
+        shadowColor="#000"
+        pressable
+        shadowOffsetX={5}
+        shadowOffsetY={5}
+        borderRadius={10}
+      >
+        {/* Share banner */}
+        <div className="p-4 relative overflow-hidden">
+          <div className="relative flex items-start justify-between gap-3 mb-4">
+            <div>
+              <p className="text-[22px] font-extrabold text-white leading-tight tracking-tight mb-1.5">
+                Share tournament<br />and earn Octacoins
+              </p>
+              <p className="text-[15px] leading-relaxed text-white/90">
+                Earn <span className="font-bold text-black"> 40 coins</span> for every new friend you invite.
+              </p>
+            </div>
+            <span className="text-5xl flex-shrink-0">🪙</span>
           </div>
-          <span className="text-5xl flex-shrink-0">🪙</span>
+          <button onClick={onShare}
+            className="relative w-full py-3 rounded-[10px] text-[13px] font-extrabold active:scale-[0.97] transition-transform"
+            style={{ background: "#0a0a0a", color: "#fff" }}>
+            Share to friends
+          </button>
         </div>
-        <button onClick={onShare}
-          className="relative w-full py-3 rounded-2xl text-[13px] font-extrabold active:scale-[0.97] transition-transform"
-          style={{ background: "rgba(9,242,166,0.15)", border: "1px solid rgba(9,242,166,0.3)", color: ACCENT }}>
-          Share & Earn →
-        </button>
-      </div>
+      </NeubrutalistCard>
+
 
       {/* Leaderboard */}
-      <div className="px-3 mx-2 mt-10 pt-5 rounded-[30px] pb-10 overflow-hidden relative">             
-        {/* Arena background */}
-        <div className="absolute inset-0 overflow-hidden">
-
-        {/* Base gradient */}
-        <div className="absolute inset-0" style={{
-            background: `
-            radial-gradient(ellipse at 50% 80%, rgba(9,242,166,0.12) 0%, transparent 65%),
-            radial-gradient(ellipse at 50% 20%, rgba(9,242,166,0.06) 0%, transparent 60%),
-            linear-gradient(180deg, #04091a 0%, #060d24 100%)
-            `
-        }} />
-
-        {/* Pulsing accent rings from floor */}
-        {[300, 220, 140].map((size, i) => (
-            <div key={size} className="absolute rounded-full"
-            style={{
-                bottom: -60 - i * 20, left: "50%", transform: "translateX(-50%)",
-                width: size, height: size,
-                border: `1.5px solid rgba(9,242,166,${0.15 + i * 0.07})`,
-                animation: `pulse 3s ease-in-out infinite`,
-                animationDelay: `${i * 0.6}s`,
-            }} />
-        ))}
-
-        {/* Ground accent line */}
-        <div className="absolute bottom-0 left-0 right-0 h-px opacity-40"
-            style={{ background: "linear-gradient(90deg, transparent, #09f2a6, transparent)" }} />
-
-        {/* Floating game icons */}
-        {[
-            { icon: "⭐", left: "5%",  top: "12%", size: 20, delay: 0,   dur: 3.2 },
-            { icon: "⭐", left: "88%", top: "8%",  size: 16, delay: 0.5, dur: 2.8 },
-            { icon: "🪙", left: "15%", top: "55%", size: 18, delay: 0.3, dur: 3.5 },
-            { icon: "🪙", left: "80%", top: "50%", size: 16, delay: 0.8, dur: 2.9 },
-            { icon: "⚡", left: "78%", top: "18%", size: 18, delay: 0.2, dur: 3.0 },
-            { icon: "⚡", left: "8%",  top: "30%", size: 14, delay: 1.0, dur: 2.6 },
-            { icon: "✨", left: "90%", top: "65%", size: 14, delay: 1.4, dur: 3.8 },
-            { icon: "✨", left: "3%",  top: "72%", size: 12, delay: 0.7, dur: 3.1 },
-            { icon: "🏆", left: "50%", top: "5%",  size: 14, delay: 1.8, dur: 4.0 },
-        ].map((item, i) => (
-            <div key={i} className="absolute leading-none select-none pointer-events-none"
-            style={{
-                left: item.left, top: item.top, fontSize: item.size,
-                animation: `floatStar ${item.dur}s ease-in-out infinite`,
-                animationDelay: `${item.delay}s`,
-                opacity: 0.7,
-            }}>
-            {item.icon}
-            </div>
-        ))}
-
-        {/* Confetti rain */}
-        <ConfettiRain />
-        </div>
-
+      <div className="px-3 mt-10 pt-5 bg-[#7C3AED] rounded-t-[30px] pb-10 overflow-hidden relative">  
+        {ConfettiRain()}           
         <div className="relative z-10">
             {top3.length > 0 && <Podium data={data} players={top3} />}
             <div className="bg-white dark:bg-white/5 border border-gray-100 dark:border-white/8 rounded-[20px] mt-3 overflow-hidden">
             {rest.map(player => <LeaderboardRow key={player.rank} player={player} />)}
             </div>   
         </div>
-
       </div>
 
     </div>

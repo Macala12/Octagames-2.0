@@ -24,7 +24,7 @@ const ChevronRight = () => (
 
 const SettingsRow = ({ icon, iconBg, label, right, onClick, danger }: SettingsRowProps) => (
   <button onClick={onClick}
-    className="w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-left
+    className="w-full flex items-center gap-3 px-4 py-3  text-left
       hover:bg-gray-50 dark:hover:bg-white/5 active:bg-gray-100 dark:active:bg-white/8
       transition-colors">
     <div className="w-[34px] h-[34px] rounded-[10px] flex items-center justify-center flex-shrink-0"
@@ -45,7 +45,7 @@ const Divider = () => (
 );
 
 const SectionCard = ({ children }: { children: React.ReactNode }) => (
-  <div className="bg-white dark:bg-white/5 border border-gray-100 dark:border-white/8 rounded-[18px] overflow-hidden mb-3">
+  <div className="bg-white dark:bg-white/5 border border-gray-100 dark:border-white/8 overflow-hidden mb-3">
     {children}
   </div>
 );
@@ -62,7 +62,7 @@ export default function Settings() {
   const [open_cu, setOpenCU] = useState(false);
 
   return (
-    <div className="pb-10 max-w-md mx-auto">
+    <div className="max-w-md mx-auto mt-10">
 
       {/* Preferences */}
       <SectionLabel label="Preferences" />
@@ -95,7 +95,7 @@ export default function Settings() {
         <Divider />
         <SettingsRow iconBg="rgba(167,139,250,0.1)"
           icon={<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" strokeWidth="2" strokeLinecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>}
-          label="Privacy" onClick={() => navigate("/settings/privacy")} />
+          label="Privacy" onClick={() => navigate("/privacy")} />
       </SectionCard>
 
       {/* General */}

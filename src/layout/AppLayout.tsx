@@ -40,7 +40,7 @@ const LayoutContent: React.FC = () => {
 
         <div
           className={`
-            ${hasPadding ? "px-4" : ""}
+            ${hasPadding ? "" : ""}
             mx-auto max-w-(--breakpoint-2xl) md:p-6
           `}
         >

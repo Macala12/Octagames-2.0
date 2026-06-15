@@ -27,7 +27,7 @@ export interface Player {
 //   );
 // };
 
-// 🔷 Rank Display (Image → fallback to SVG)
+// // 🔷 Rank Display (Image → fallback to SVG)
 // const RankDisplay = ({
 //   rank,
 //   image,
@@ -58,10 +58,7 @@ export interface Player {
 // 🔷 Player Card
 const PlayerCard = ({ player }: { player: Player }) => {
   return (
-<div className="relative z-10 bg-white/10 mr-3 rounded-2xl p-4 flex flex-col items-center justify-center w-[100px] h-[110px]">
-      {/* Rank Background */}
-      {/* <RankDisplay rank={player.rank} image={player.rankImage} /> */}
-
+<div className="relative z-10 mr-3 rounded-2xl p-2 flex flex-col items-center justify-center w-[100px] h-[fit-content]">
       {/* Avatar */}
       <div className="w-14 h-14 rounded-full overflow-hidden z-10 border-2 border-white/20">
         <img
@@ -72,9 +69,18 @@ const PlayerCard = ({ player }: { player: Player }) => {
       </div>
 
       {/* Username */}
-      <p className="mt-2 text-sm font-semibold text-white z-10 truncate max-w-[90px] text-center">
+      <p className="mt-2 text-sm font-semibold text-black z-10 truncate max-w-[90px] text-center">
         {player.username}
       </p>
+
+      <span
+        className="text-[10px] w-[70px] mt-2 text-center font-extrabold tracking-wide px-2.5 py-1 rounded-full"
+        style={{
+          color: "#7c3aedad",
+        }}
+      >
+        1206 pts
+      </span>
     </div>
   );
 };
@@ -86,14 +92,14 @@ interface Props {
 
 export default function TopPlayers({ players }: Props) {
   return (
-    <div className="rounded-2xl">
+    <div className="mt-10">
       {/* Title */}
-      <h2 className="text-white font-bold text-md mb-4">
+      <h2 className="text-black font-bold text-md mb-4">
         Top Players in Africa 🌍
       </h2>
 
       {/* Players Row */}
-      <div className="flex justify-between overflow-x-auto no-scrollbar pl-2 pr-2 items-end gap-3">
+      <div className="flex overflow-x-auto no-scrollbar pl-2 pr-2 items-end gap-3">
         {players.map((player) => (
           <PlayerCard key={player.id} player={player} />
         ))}

@@ -1,6 +1,7 @@
 // ─── ChatRoom.tsx ─────────────────────────────────────────────────────────────
 import { useState, useRef, useEffect } from "react";
 import BottomSheet from "../../components/ui/bottom-sheet/BottomSheet";
+import ChatSettings from "../../components/ui/bottom-sheet/ChatSheet";
 import { motion, Variants } from "framer-motion";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -552,6 +553,7 @@ export default function ChatRoom() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isOpen, setOpen] = useState(false);
+  const [openSettings, setOpenSetting] = useState(false);
   const [challengeOpen, setChallengeOpen] = useState(false);
   const [showGamePicker, setShowGamePicker] = useState(false);
   const [hasGame, setHasGame] = useState(false);
@@ -643,7 +645,7 @@ export default function ChatRoom() {
           </div>
         </div>
 
-        <button className="w-8 h-8 rounded-full flex items-center justify-center"
+        <button onClick={() => { setOpenSetting(true) }} className="w-8 h-8 rounded-full flex items-center justify-center"
           style={{ background: "rgba(255,255,255,0.06)" }}>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
             stroke="rgba(255,255,255,0.5)" strokeWidth="2" strokeLinecap="round">
@@ -656,7 +658,7 @@ export default function ChatRoom() {
 
       {/* No active match banner */}
       {!hasGame ? (
-        <div className="mx-3 mt-2.5 px-3.5 py-2.5 rounded-2xl"
+        <div className="mx-3 mt-2.5 px-3.5 py-2.5 rounded-[10px]"
         style={{ background: "rgba(251,191,36,0.06)", border: "0.5px solid rgba(251,191,36,0.2)" }}>
         <div className="flex items-center gap-1.5 mb-1">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
@@ -673,13 +675,8 @@ export default function ChatRoom() {
       ) : ("")}
 
       {/* Clears notice */}
-      <div className="flex items-center justify-center gap-1.5 mx-3 mt-1.5 py-2 rounded-xl"
-        style={{ background: "rgba(255,255,255,0.04)" }}>
-        <svg width="11" height="11" viewBox="0 0 24 24" fill="none"
-          stroke="rgba(255,255,255,0.3)" strokeWidth="2" strokeLinecap="round">
-          <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
-        </svg>
-        <span className="text-[11px]" style={{ color: "rgba(255,255,255,0.3)" }}>
+      <div className="flex items-center justify-center gap-1.5 mx-3 mt-1.5 py-2 rounded-xl">
+        <span className="text-[11px] text-gray-500">
           Chats clear every 12 hours
         </span>
       </div>
@@ -729,7 +726,7 @@ export default function ChatRoom() {
 
       {/* Input */}
       <div className="p-3">
-        <div className="flex items-center gap-2 rounded-[22px] px-4 py-2"
+        <div className="relative flex items-center gap-2 rounded-[22px] px-4 py-2"
           style={{ background: "rgba(255,255,255,0.06)", border: "0.5px solid rgba(255,255,255,0.1)" }}>
           <input value={input}
             onChange={e => setInput(e.target.value)}
@@ -738,13 +735,13 @@ export default function ChatRoom() {
             className="flex-1 bg-transparent border-none outline-none text-[13px] text-white placeholder:text-white/25" />
 
           <button onClick={() => {setOpen(true); setShowGamePicker(true)}}
-            className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-base"
-            style={{ background: "rgba(255,255,255,0.08)" }}>
-            🎮
+            className="text-[11px] w-18 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-base"
+            style={{ background: ACCENT, color: "#000" }}>
+            Let's play
           </button>
 
           <button onClick={send}
-            className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 transition-all active:scale-90"
+            className="w-13 h-8 rounded-full flex items-center justify-center flex-shrink-0 transition-all active:scale-90"
             style={{ background: canSend ? ACCENT : "rgba(255,255,255,0.1)" }}>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
               stroke={canSend ? ACCENT_TEXT : "rgba(255,255,255,0.3)"} strokeWidth="2.5" strokeLinecap="round">
@@ -767,7 +764,7 @@ export default function ChatRoom() {
         )}
       </BottomSheet>
 
-        <BottomSheet isOpen={challengeOpen} onClose={() => {setChallengeOpen(false)}} >
+      <BottomSheet isOpen={challengeOpen} onClose={() => {setChallengeOpen(false)}} >
             <div className="p-2 pb-8">
                 <div className="flex items-start justify-between mb-5">
                     <div>
@@ -846,6 +843,10 @@ export default function ChatRoom() {
                     </button>
                 </div>
             </div>
+      </BottomSheet>
+
+      <BottomSheet isOpen={openSettings} onClose={() => { setOpenSetting(false) }}>
+        <ChatSettings />
       </BottomSheet>
     </div>
 

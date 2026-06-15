@@ -123,16 +123,22 @@ export default function Notification() {
 
       {/* Header */}
       <div className="flex items-center justify-between mb-5">
-        <button className="w-9 h-9 rounded-full flex items-center justify-center
-          bg-gray-100 dark:bg-white/10 border border-gray-200 dark:border-white/10
-          active:scale-90 transition-transform">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"
-            className="text-gray-500 dark:text-white/50">
-            <path d="M19 12H5M12 5l-7 7 7 7"/>
-          </svg>
-        </button>
-        <h1 className="text-[16px] font-extrabold text-gray-900 dark:text-white">Notifications</h1>
+        <div className="flex gap-3">
+            <button className="w-9 h-9 rounded-full flex items-center justify-center
+            bg-gray-100 dark:bg-white/10 border border-gray-200 dark:border-white/10
+            active:scale-90 transition-transform">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"
+                className="text-gray-500 dark:text-white/50">
+                <path d="M19 12H5M12 5l-7 7 7 7"/>
+            </svg>
+            </button>
+            <div>
+                <h1 className="text-[16px] font-extrabold text-gray-900 dark:text-white">Notifications</h1>
+                <p className="text-[12px] text-gray-400 mt-0.5">You have <b className="text-brand-500">5</b> new notifications</p>
+            </div>
+            
+        </div>
         <button className="text-[12px] font-bold" style={{ color: ACCENT }}>
           Mark all read
         </button>

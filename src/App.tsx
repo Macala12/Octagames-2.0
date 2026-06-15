@@ -24,6 +24,7 @@ import Friends from "./pages/Friends/FriendChat";
 
 import Wallet from "./pages/Wallet/Wallet";
 import TransactionHistory from "./pages/Wallet/TransactionHistory";
+import TransactionSuccess from "./pages/Octacoin/TransactionSuccessful";
 import Withdraw from "./pages/Wallet/Withdraw";
 import Challenges from "./pages/Challenges/Challenges";
 import Octacoin from "./pages/Octacoin/Octacoins";
@@ -36,6 +37,7 @@ import ReferralScreen from "./pages/Referral";
 /* Profile page - Edit */
 import EditProfilePage from "./pages/EditProfile";
 import EditSecurityPage from "./pages/EditSecurity";
+import PrivacySettings from "./pages/PrivacySettings";
 import { ChatsScreen } from "./pages/Friends/Chat";
 import ChatRoom from "./pages/Friends/ChatRoom";
 import CreateTournament from "./pages/Friends/CreateTournament";
@@ -63,6 +65,8 @@ export default function App() {
             <Route path="/octacoin" element={<Octacoin />} />
             <Route path="/profile" element={<UserProfiles />} />
             <Route path="/referral" element={<ReferralScreen />} />
+
+            <Route path="/success" element={<TransactionSuccess amount={0} recipient={""} type={""} network={""} reference={""} />} />
 
             <Route path="/tournament" element={<TournamentScreen data={{
               "id": "game_001",
@@ -120,6 +124,7 @@ export default function App() {
             <Route path="/form-elements" element={<FormElements />} />
 
             {/* Edit */}
+            <Route path="/privacy" element={<PrivacySettings />} />
             <Route path="/edit-profile" element={<EditProfilePage />} />
             <Route path="/edit-security" element={<EditSecurityPage />} />
 

@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import BottomSheet from "../../components/ui/bottom-sheet/BottomSheet";
 import WalletQuickSettings from "../../components/ui/bottom-sheet/WalletSettingsSheet";
+import { BankCards } from "../../components/cards/BankCard";
+import { AddBankForm } from "../../components/ui/bottom-sheet/BankForm";
 
 export interface Transaction {
   id: string;
@@ -12,8 +14,22 @@ export interface Transaction {
   status: "success" | "pending" | "failed";
 }
 
-const ACCENT = "#09f2a6";
+const ACCENT = "#7C3AED";
 const ACCENT_TEXT = "#022b1e";
+const DEMO_CARDS = [
+  {
+    id: "1",
+    bankName: "GTBank",
+    accountNumber: "0123456789",
+    accountName: "ADEWALE JOHN SEUN",
+  },
+  {
+    id: "2",
+    bankName: "Moniepoint",
+    accountNumber: "09012313234",
+    accountName: "ADEWALE JOHN SEUN",
+  },
+];
 
 // --- Wallet Card ---
 const WalletCard = ({
@@ -25,63 +41,36 @@ const WalletCard = ({
   onTopUp?: () => void;
   onCashOut?: () => void;
 }) => (
-  <div className="relative rounded-3xl p-6 overflow-hidden mb-6" style={{ background: "#0a0a0a", minHeight: 190 }}>
-
-    {/* Abstract SVG background */}
-    <svg className="absolute inset-0 w-full h-full" viewBox="0 0 360 190"
-      preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <pattern id="dots" x="0" y="0" width="22" height="22" patternUnits="userSpaceOnUse">
-          <circle cx="1" cy="1" r="1" fill="rgba(255,255,255,0.07)" />
-        </pattern>
-      </defs>
-      <rect width="360" height="190" fill="url(#dots)" />
-      <ellipse cx="300" cy="30" rx="110" ry="90" fill="#09f2a6" opacity="0.08" />
-      <ellipse cx="320" cy="50" rx="70" ry="55" fill="#09f2a6" opacity="0.1" />
-      <ellipse cx="40" cy="170" rx="90" ry="70" fill="#7C3AED" opacity="0.12" />
-      <ellipse cx="60" cy="160" rx="50" ry="40" fill="#7C3AED" opacity="0.1" />
-      <circle cx="310" cy="190" r="120" fill="none" stroke="#09f2a6" strokeWidth="0.6" opacity="0.15" />
-      <circle cx="310" cy="190" r="90"  fill="none" stroke="#09f2a6" strokeWidth="0.6" opacity="0.12" />
-      <circle cx="310" cy="190" r="60"  fill="none" stroke="#09f2a6" strokeWidth="0.6" opacity="0.1" />
-      <line x1="0" y1="130" x2="180" y2="0" stroke="rgba(9,242,166,0.06)" strokeWidth="40" />
-      <rect x="24" y="95" width="36" height="28" rx="5" fill="none"
-        stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
-      <line x1="24" y1="109" x2="60" y2="109" stroke="rgba(255,255,255,0.1)" strokeWidth="1" />
-      <line x1="42" y1="95"  x2="42" y2="123" stroke="rgba(255,255,255,0.1)" strokeWidth="1" />
-    </svg>
+  <div className="relative p-2 overflow-hidden mb-3 px-6" style={{ minHeight: 190 }}>
 
     {/* Content */}
-    <div className="relative z-10">
-      <div className="flex justify-between items-start mb-7">
-        <p className="text-[11px] font-bold uppercase tracking-widest text-white/40">
-          Withdrawable Balance
+    <div className="relative z-10 mt-4">
+      <div className="flex justify-between items-start mb-3">
+        <p className="text-[11px] font-bold uppercase tracking-widest text-black/40">
+          Total Balance
         </p>
-        <div className="flex items-center gap-1.5 rounded-full px-2.5 py-1"
-          style={{ background: "rgba(9,242,166,0.12)", border: "0.5px solid rgba(9,242,166,0.25)" }}>
-          <div className="w-1.5 h-1.5 rounded-full" style={{ background: ACCENT }} />
-          <span className="text-[10px] font-bold" style={{ color: ACCENT }}>Active</span>
-        </div>
       </div>
 
-      <p className="text-[36px] font-extrabold text-white tracking-tight mb-7 leading-none">
+      <p className="text-[32px] font-extrabold text-black tracking-tight leading-none">
         ₦{balance.toLocaleString()}
-        <span className="text-[20px] text-white/40">.00</span>
+        <span className="text-[20px] text-black/40">.00</span>
       </p>
+      <p className="mb-4 mt-2 text-[11px] text-black/70">updated just now</p>
 
       <div className="flex gap-2.5">
         <button onClick={onTopUp}
-          className="flex-1 flex items-center justify-center gap-1.5 rounded-2xl py-3 text-[13px] font-bold active:scale-95 transition-transform"
-          style={{ background: ACCENT, color: ACCENT_TEXT }}>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={ACCENT_TEXT}
+          className="flex-1 flex items-center justify-center gap-1.5 py-3 rounded-[20px] text-[13px] font-bold active:scale-95 transition-transform"
+          style={{ background: "#7C3AED", color: "#0a0a0a" }}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={"#000"}
             strokeWidth="2.5" strokeLinecap="round"><line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" /></svg>
           Top Up
         </button>
         <button onClick={onCashOut}
-          className="flex-1 flex items-center justify-center gap-1.5 rounded-2xl py-3 text-[13px] font-bold text-white active:scale-95 transition-transform"
-          style={{ background: "rgba(255,255,255,0.08)", border: "0.5px solid rgba(255,255,255,0.15)" }}>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white"
+          className="flex-1 flex items-center justify-center gap-1.5 py-3 rounded-[20px] text-[13px] font-bold text-white active:scale-95 transition-transform"
+          style={{ border: "1px solid #000", color: "#000" }}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#000"
             strokeWidth="2.5" strokeLinecap="round"><line x1="7" y1="17" x2="17" y2="7" /><polyline points="7 7 17 7 17 17" /></svg>
-          Cash Out
+          Withdraw
         </button>
       </div>
     </div>
@@ -89,23 +78,23 @@ const WalletCard = ({
 );
 
 // --- Quick Stats ---
-const QuickStats = ({ transactions }: { transactions: Transaction[] }) => {
-  const totalWon   = transactions.filter(t => t.type === "credit" && t.status === "success").reduce((s, t) => s + t.amount, 0);
-  const totalSpent = transactions.filter(t => t.type === "debit"  && t.status === "success").reduce((s, t) => s + t.amount, 0);
-  return (
-    <div className="grid grid-cols-2 gap-2.5 mb-6">
-      {[
-        { label: "Total Won",   value: `₦${totalWon.toLocaleString()}`,   color: "var(--color-text-primary)" },
-        { label: "Total Spent", value: `₦${totalSpent.toLocaleString()}`, color: "var(--color-text-primary)" },
-      ].map(s => (
-        <div key={s.label} className="rounded-2xl p-3.5 border border-gray-100 dark:border-white/8 bg-white dark:bg-white/5">
-          <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-1.5">{s.label}</p>
-          <p className="text-[18px] font-extrabold" style={{ color: s.color }}>{s.value}</p>
-        </div>
-      ))}
-    </div>
-  );
-};
+// const QuickStats = ({ transactions }: { transactions: Transaction[] }) => {
+//   const totalWon   = transactions.filter(t => t.type === "credit" && t.status === "success").reduce((s, t) => s + t.amount, 0);
+//   const totalSpent = transactions.filter(t => t.type === "debit"  && t.status === "success").reduce((s, t) => s + t.amount, 0);
+//   return (
+//     <div className="grid grid-cols-2 gap-2.5 mb-6">
+//       {[
+//         { label: "Total Won",   value: `₦${totalWon.toLocaleString()}`,   color: "var(--color-text-primary)" },
+//         { label: "Total Spent", value: `₦${totalSpent.toLocaleString()}`, color: "var(--color-text-primary)" },
+//       ].map(s => (
+//         <div key={s.label} className="rounded-2xl p-3.5 border border-gray-100 dark:border-white/8 bg-white dark:bg-white/5">
+//           <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-1.5">{s.label}</p>
+//           <p className="text-[18px] font-extrabold" style={{ color: s.color }}>{s.value}</p>
+//         </div>
+//       ))}
+//     </div>
+//   );
+// };
 
 // --- Status Badge ---
 const statusConfig = {
@@ -171,14 +160,14 @@ function groupByDate(txs: Transaction[]) {
 const EmptyTransactions = ({ onTopUp }: { onTopUp?: () => void }) => (
   <div className="text-center py-12">
     <div className="w-14 h-14 rounded-2xl mx-auto mb-4 flex items-center justify-center"
-      style={{ background: "rgba(9,242,166,0.1)" }}>
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#09f2a6" strokeWidth="1.8" strokeLinecap="round">
+      style={{ background: "#7C3AED1c" }}>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" strokeWidth="1.8" strokeLinecap="round">
         <rect x="2" y="5" width="20" height="14" rx="3" /><line x1="2" y1="10" x2="22" y2="10" />
       </svg>
     </div>
     <p className="text-[15px] font-bold text-gray-900 dark:text-white mb-1">No transactions yet</p>
     <p className="text-[13px] text-gray-400 mb-5">Top up to get started</p>
-    <button onClick={onTopUp} className="rounded-full px-5 py-2.5 text-[13px] font-bold active:scale-95 transition-transform"
+    <button onClick={onTopUp} className="px-5 py-2.5 text-[13px] font-bold active:scale-95 transition-transform"
       style={{ background: ACCENT, color: ACCENT_TEXT }}>
       Top Up Octacoins
     </button>
@@ -196,14 +185,14 @@ export default function WalletScreen({
   const navigate = useNavigate();
   const grouped = groupByDate(transactions);
   const [open, setOpen] = useState(false);
+  const [cards, setCards]     = useState(DEMO_CARDS);
+  const [adding, setAdding]   = useState(false);
   return (
-    <div className="p-2 pt-6 pb-10">
+    <div className="pb-10">
       {/* Header */}
-      <div className="flex items-center justify-between mb-5">
-        <div>
-          <h1 className="text-[20px] font-bold text-gray-900 dark:text-white">My Wallet</h1>
-          <p className="text-xs text-gray-400 mt-0.5">Manage balance & transactions</p>
-        </div>
+      <WalletCard balance={balance} onTopUp={() => {navigate('/octacoin')}} onCashOut={() => {navigate('/withdraw')}} />
+      
+      {/* <div className="flex items-center justify-between mb-5">
         <button onClick={() => setOpen(true)} className="w-9 h-9 rounded-full flex items-center justify-center bg-gray-100 dark:bg-white/10 border-gray-200 dark:border-white/10">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
             strokeWidth="2" strokeLinecap="round">
@@ -211,15 +200,27 @@ export default function WalletScreen({
             <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
           </svg>
         </button>
-      </div>
+      </div> */}
 
-      <WalletCard balance={balance} onTopUp={() => {navigate('/octacoin')}} onCashOut={() => {navigate('/withdraw')}} />
-      <QuickStats transactions={transactions} />
+        <BankCards
+          cards={cards}
+          onAddBank={() => setAdding(true)}
+        />
+      
+      <BottomSheet title="Add Bank Account" isOpen={adding} onClose={() => setAdding(false)}>
+        <AddBankForm
+          onSuccess={(card) => {
+            setCards((prev) => [...prev, card]);
+            setAdding(false);
+          }}
+          onCancel={() => setAdding(false)}
+        />
+      </BottomSheet>
 
       {/* Transaction History */}
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex items-center justify-between mt-6 mb-4">
         <h2 className="text-[16px] font-bold text-gray-900 dark:text-white">Transaction History</h2>
-        <button className="text-sm font-semibold p-2 rounded-[15px]" onClick={() => {navigate('/transaction')}}>See all </button>
+        <button className="text-sm font-semibold text-[#7C3AED] p-2 rounded-[15px]" onClick={() => {navigate('/transaction')}}>See all </button>
       </div>
 
       {transactions.length === 0 ? (

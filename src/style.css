@@ -6,7 +6,6 @@
     outline: none;
     border: 2px solid transparent;
     transition: all 0.2s;
-    color: white;
 }
 
 .input:focus {

@@ -6,9 +6,10 @@ interface Props {
   children: React.ReactNode;
   title?: string;
   subtitle?: string;
+  background?: string;
 }
 
-const BottomSheet: React.FC<Props> = ({ isOpen, onClose, children, title, subtitle }) => {
+const BottomSheet: React.FC<Props> = ({ isOpen, onClose, children, title, subtitle, background }) => {
   const sheetRef   = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
   const dragState  = useRef({ dragging: false, startY: 0, currentY: 0 });
@@ -80,11 +81,12 @@ const BottomSheet: React.FC<Props> = ({ isOpen, onClose, children, title, subtit
       <div
         ref={sheetRef}
         className="fixed bottom-0 left-0 right-0 z-50 mx-auto w-full max-w-lg
-          bg-white dark:bg-[#111] rounded-t-[24px] shadow-2xl"
+          dark:bg-[#111] rounded-t-[24px] shadow-2xl"
         style={{
           transform:  isOpen ? "translateY(0)" : "translateY(100%)",
           transition: "transform 0.4s cubic-bezier(0.32,0.72,0,1)",
           paddingBottom: "env(safe-area-inset-bottom, 24px)",
+          backgroundColor: background ? background : "#fff"
         }}
       >
         {/* Drag handle */}

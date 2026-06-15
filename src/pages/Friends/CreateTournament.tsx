@@ -125,10 +125,10 @@ function TellFriend({ users, onSelect }: Props) {
     };
 
   return (
-    <div className="p-2 text-white">
+    <div className="p-2 text-gray-900">
       <div className="text-center mb-6">
         <h2 className="text-2xl font-bold mb-2">Invite Friends</h2>
-        <p className="text-gray-400 text-sm">Select friends to join your tournament</p>
+        <p className="text-gray-500 text-sm">Select friends to join your tournament</p>
       </div>
 
       <div className="grid grid-cols-4 gap-4 mb-6">
@@ -144,17 +144,17 @@ function TellFriend({ users, onSelect }: Props) {
                 alt={u.name}
                 className={`w-14 h-14 rounded-full object-cover transition-all ${
                   selected.includes(u.id)
-                    ? "ring-4 ring-green-500 ring-offset-2 ring-offset-[#0b0f14]"
-                    : "ring-2 ring-gray-700"
+                    ? "ring-4 ring-green-500 ring-offset-2 ring-offset-white"
+                    : "ring-2 ring-gray-200"
                 }`}
               />
               {selected.includes(u.id) && (
                 <div className="absolute -top-1 -right-1 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
-                  <span className="text-black text-xs">✓</span>
+                  <span className="text-white text-xs">✓</span>
                 </div>
               )}
             </div>
-            <p className="text-xs text-center mt-2 line-clamp-2">{u.name}</p>
+            <p className="text-xs text-center mt-2 line-clamp-2 text-gray-700">{u.name}</p>
           </button>
         ))}
       </div>
@@ -164,8 +164,8 @@ function TellFriend({ users, onSelect }: Props) {
         disabled={selected.length === 0}
         className={`w-full py-4 rounded-xl font-semibold text-base transition-all ${
           selected.length === 0
-            ? "bg-gray-700 text-gray-500 cursor-not-allowed"
-            : "bg-green-500 text-black active:scale-98"
+            ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+            : "bg-green-500 text-white active:scale-98"
         }`}
       >
         Send Invite ({selected.length})
@@ -228,7 +228,7 @@ export default function CreateTournament() {
   };
 
   return (
-    <div className="h-screen text-white flex flex-col overflow-hidden">
+    <div className="h-screen text-gray-900 flex flex-col overflow-hidden">
       <AnimatePresence mode="wait" custom={direction}>
         <motion.div
           key={step}
@@ -254,10 +254,10 @@ export default function CreateTournament() {
                   <div className="text-8xl mb-6">
                     <img src={onboardingSlides[onboardingIndex].image} alt="" />
                   </div>
-                  <h1 className="text-3xl font-bold mb-4 px-4">
+                  <h1 className="text-3xl font-bold mb-4 px-4 text-gray-900">
                     {onboardingSlides[onboardingIndex].title}
                   </h1>
-                  <p className="text-gray-400 text-base px-8 leading-relaxed">
+                  <p className="text-gray-500 text-base px-8 leading-relaxed">
                     {onboardingSlides[onboardingIndex].description}
                   </p>
                 </motion.div>
@@ -271,7 +271,7 @@ export default function CreateTournament() {
                     className={`h-2 rounded-full transition-all duration-300 ${
                       idx === onboardingIndex
                         ? "w-8 bg-brand-500"
-                        : "w-2 bg-gray-600"
+                        : "w-2 bg-gray-200"
                     }`}
                   />
                 ))}
@@ -290,7 +290,7 @@ export default function CreateTournament() {
                 {onboardingIndex < onboardingSlides.length - 1 && (
                   <button
                     onClick={skipOnboarding}
-                    className="w-full py-4 text-gray-400 font-medium"
+                    className="w-full py-4 text-gray-500 font-medium"
                   >
                     Skip
                   </button>
@@ -303,8 +303,8 @@ export default function CreateTournament() {
           {step === 1 && (
             <div className="flex flex-col h-full p-6">
               <div className="mb-6">
-                <h2 className="text-2xl font-bold mb-2">Select Game</h2>
-                <p className="text-gray-400 text-sm">Choose a game for your tournament</p>
+                <h2 className="text-2xl text-gray-900 font-bold mb-2">Select Game</h2>
+                <p className="text-gray-500 text-sm">Choose a game for your tournament</p>
               </div>
 
               <div className="grid grid-cols-3 gap-4 flex-1">
@@ -314,8 +314,8 @@ export default function CreateTournament() {
                     onClick={() => setSelectedGame(g)}
                     className={`p-3 h-[fit-content] rounded-2xl transition-all active:scale-95 ${
                       selectedGame?.id === g.id
-                        ? "bg-brand-500/20 border-2 border-brand-500 shadow-lg shadow-green-500/20"
-                        : "bg-white/5 border-2 border-transparent"
+                        ? "bg-brand-500/10 border-2 border-brand-500 shadow-lg shadow-brand-500/10"
+                        : "bg-gray-50 border-2 border-transparent"
                     }`}
                   >
                     <div className="relative">
@@ -326,23 +326,23 @@ export default function CreateTournament() {
                       />
                       {selectedGame?.id === g.id && (
                         <div className="absolute top-1 right-1 w-6 h-6 bg-brand-500 rounded-full flex items-center justify-center">
-                          <span className="text-black text-xs font-bold">✓</span>
+                          <span className="text-white text-xs font-bold">✓</span>
                         </div>
                       )}
                     </div>
-                    <p className="text-xs font-medium text-center">{g.name}</p>
+                    <p className="text-xs text-gray-900 font-medium text-center">{g.name}</p>
                   </button>
                 ))}
               </div>
 
               <div className="flex gap-3 pt-6">
-                <button onClick={back} className="flex-1">
+                <button onClick={back} className="flex-1 py-3 rounded-xl font-semibold text-gray-500 bg-gray-50">
                   Back
                 </button>
                 <button
                   disabled={!selectedGame}
                   onClick={next}
-                  className={`flex-1 btn-primary ${!selectedGame && "opacity-50"}`}
+                  className={`flex-1 py-3 rounded-xl font-semibold bg-brand-500 text-black ${!selectedGame && "opacity-50"}`}
                 >
                   Continue
                 </button>
@@ -354,105 +354,105 @@ export default function CreateTournament() {
           {step === 2 && (
             <div className="flex flex-col h-full p-6">
               <div className="mb-6">
-                <h2 className="text-2xl font-bold mb-2">Tournament Details</h2>
-                <p className="text-gray-400 text-sm">Configure your tournament settings</p>
+                <h2 className="text-2xl text-gray-900 font-bold mb-2">Tournament Details</h2>
+                <p className="text-gray-500 text-sm">Configure your tournament settings</p>
               </div>
 
               <div className="flex-1 overflow-y-auto space-y-4 pr-2">
                 {/* Game Name */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-400 mb-2">
+                  <label className="block text-sm font-medium text-gray-500 mb-2">
                     Game
                   </label>
-                  <div className="flex items-center gap-3 bg-white/5 p-4 rounded-xl">
+                  <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-xl">
                     <img
                       src={selectedGame?.image}
                       alt={selectedGame?.name}
                       className="w-12 h-12 rounded-lg object-cover"
                     />
-                    <span className="font-medium">{selectedGame?.name}</span>
+                    <span className="font-medium text-gray-900">{selectedGame?.name}</span>
                   </div>
                 </div>
 
                 {/* Player Range */}
                 <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <label className="block text-sm font-medium text-gray-400 mb-2">
+                    <label className="block text-sm font-medium text-gray-500 mb-2">
                       Min Players
                     </label>
                     <input
                       type="number"
                       placeholder="2"
-                      className="input bg-white/5"
+                      className="input bg-gray-50 border border-gray-200 text-black placeholder-gray-400"
                       value={form.minPlayers}
                       onChange={(e) =>
                         setForm({ ...form, minPlayers: Number(e.target.value) })
                       }
                     />
                     {errors.minPlayers && (
-                      <p className="error">{errors.minPlayers}</p>
+                      <p className="error text-red-500 text-xs mt-1">{errors.minPlayers}</p>
                     )}
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-400 mb-2">
+                    <label className="block text-sm font-medium text-gray-500 mb-2">
                       Max Players
                     </label>
                     <input
                       type="number"
                       placeholder="10"
-                      className="input bg-white/5"
+                      className="input bg-gray-50 border border-gray-200 text-gray-900 placeholder-gray-400"
                       value={form.maxPlayers}
                       onChange={(e) =>
                         setForm({ ...form, maxPlayers: Number(e.target.value) })
                       }
                     />
                     {errors.maxPlayers && (
-                      <p className="error">{errors.maxPlayers}</p>
+                      <p className="error text-red-500 text-xs mt-1">{errors.maxPlayers}</p>
                     )}
                   </div>
                 </div>
 
                 {/* Duration */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-400 mb-2">
+                  <label className="block text-sm font-medium text-gray-500 mb-2">
                     Duration (minutes)
                   </label>
                   <input
                     type="number"
                     placeholder="30"
-                    className="input bg-white/5"
+                    className="input bg-gray-50 border border-gray-200 text-gray-900 placeholder-gray-400"
                     value={form.duration}
                     onChange={(e) =>
                       setForm({ ...form, duration: Number(e.target.value) })
                     }
                   />
-                  {errors.duration && <p className="error">{errors.duration}</p>}
+                  {errors.duration && <p className="error text-red-500 text-xs mt-1">{errors.duration}</p>}
                 </div>
 
                 {/* Start Time */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-400 mb-2">
+                  <label className="block text-sm font-medium text-gray-500 mb-2">
                     Start Time
                   </label>
                   <input
                     type="datetime-local"
-                    className="input bg-white/5"
+                    className="input bg-gray-50 border border-gray-200 text-gray-900"
                     value={form.startTime}
                     onChange={(e) =>
                       setForm({ ...form, startTime: e.target.value })
                     }
                   />
-                  {errors.startTime && <p className="error">{errors.startTime}</p>}
+                  {errors.startTime && <p className="error text-red-500 text-xs mt-1">{errors.startTime}</p>}
                 </div>
 
                 {/* End Time Display */}
                 {endTime && (
                   <div>
-                    <label className="block text-sm font-medium text-gray-400 mb-2">
+                    <label className="block text-sm font-medium text-gray-500 mb-2">
                       End Time
                     </label>
-                    <div className="bg-white/5 p-4 rounded-xl">
-                      <p className="text-sm font-medium">
+                    <div className="bg-gray-50 p-4 rounded-xl">
+                      <p className="text-sm font-medium text-gray-900">
                         {formatDateTime(endTime)}
                       </p>
                     </div>
@@ -461,13 +461,13 @@ export default function CreateTournament() {
               </div>
 
               <div className="flex gap-3 pt-6">
-                <button onClick={back} className="flex-1">
+                <button onClick={back} className="flex-1 py-3 rounded-xl font-semibold text-gray-500 bg-gray-50">
                   Back
                 </button>
                 <button
                   disabled={!isValid}
                   onClick={next}
-                  className={`flex-1 btn-primary ${!isValid && "opacity-50"}`}
+                  className={`flex-1 py-3 rounded-xl font-semibold bg-brand-500 text-black ${!isValid && "opacity-50"}`}
                 >
                   Continue
                 </button>
@@ -479,77 +479,77 @@ export default function CreateTournament() {
           {step === 3 && (
             <div className="flex flex-col h-full p-6">
               <div className="mb-6">
-                <h2 className="text-2xl font-bold mb-2">Set Wager</h2>
-                <p className="text-gray-400 text-sm">Entry fee for participants (or play for free)</p>
+                <h2 className="text-2xl font-bold mb-2 text-gray-900">Set Wager</h2>
+                <p className="text-gray-500 text-sm">Entry fee for participants (or play for free)</p>
               </div>
 
               <div className="flex-1">
                 <div>
-                  <label className="block text-sm font-medium text-gray-400 mb-2">
+                  <label className="block text-sm font-medium text-gray-500 mb-2">
                     Entry Amount (₦)
                   </label>
                   <input
                     type="number"
                     placeholder="0"
-                    className="input text-2xl font-bold bg-white/5"
+                    className="input text-2xl font-bold bg-gray-50 border border-gray-200 text-gray-900 placeholder-gray-400"
                     value={form.wager}
                     onChange={(e) =>
                       setForm({ ...form, wager: Number(e.target.value) })
                     }
                   />
-                  <p className="text-sm text-gray-500 mt-2">
+                  <p className="text-sm text-gray-400 mt-2">
                     Enter 0 to play for free
                   </p>
                 </div>
 
                 {prize && form.wager > 0 && (
                   <div className="mt-6 space-y-3">
-                    <div className="relative p-5 rounded-[20px]">
+                    <div className="relative p-5 rounded-[20px] bg-gray-50 border border-gray-100 overflow-hidden">
                         <svg className="absolute inset-0 w-full h-full" viewBox="0 0 360 190"
                             preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
                             <defs>
                                 <pattern id="dots" x="0" y="0" width="22" height="22" patternUnits="userSpaceOnUse">
-                                <circle cx="1" cy="1" r="1" fill="rgba(255,255,255,0.07)" />
+                                <circle cx="1" cy="1" r="1" fill="rgba(0,0,0,0.06)" />
                                 </pattern>
                             </defs>
                             <rect width="360" height="190" fill="url(#dots)" />
-                            <ellipse cx="300" cy="30" rx="110" ry="90" fill="#09f2a6" opacity="0.08" />
-                            <ellipse cx="320" cy="50" rx="70" ry="55" fill="#09f2a6" opacity="0.1" />
-                            <ellipse cx="40" cy="170" rx="90" ry="70" fill="#7C3AED" opacity="0.12" />
-                            <ellipse cx="60" cy="160" rx="50" ry="40" fill="#7C3AED" opacity="0.1" />
-                            <circle cx="310" cy="190" r="120" fill="none" stroke="#09f2a6" strokeWidth="0.6" opacity="0.15" />
-                            <circle cx="310" cy="190" r="90"  fill="none" stroke="#09f2a6" strokeWidth="0.6" opacity="0.12" />
-                            <circle cx="310" cy="190" r="60"  fill="none" stroke="#09f2a6" strokeWidth="0.6" opacity="0.1" />
-                            <line x1="0" y1="130" x2="180" y2="0" stroke="rgba(9,242,166,0.06)" strokeWidth="40" />
+                            <ellipse cx="300" cy="30" rx="110" ry="90" fill="#09c98a" opacity="0.10" />
+                            <ellipse cx="320" cy="50" rx="70" ry="55" fill="#09c98a" opacity="0.12" />
+                            <ellipse cx="40" cy="170" rx="90" ry="70" fill="#7C3AED" opacity="0.10" />
+                            <ellipse cx="60" cy="160" rx="50" ry="40" fill="#7C3AED" opacity="0.08" />
+                            <circle cx="310" cy="190" r="120" fill="none" stroke="#09c98a" strokeWidth="0.6" opacity="0.18" />
+                            <circle cx="310" cy="190" r="90"  fill="none" stroke="#09c98a" strokeWidth="0.6" opacity="0.14" />
+                            <circle cx="310" cy="190" r="60"  fill="none" stroke="#09c98a" strokeWidth="0.6" opacity="0.12" />
+                            <line x1="0" y1="130" x2="180" y2="0" stroke="rgba(9,201,138,0.07)" strokeWidth="40" />
                             <rect x="24" y="95" width="36" height="28" rx="5" fill="none"
-                                stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
-                            <line x1="24" y1="109" x2="60" y2="109" stroke="rgba(255,255,255,0.1)" strokeWidth="1" />
-                            <line x1="42" y1="95"  x2="42" y2="123" stroke="rgba(255,255,255,0.1)" strokeWidth="1" />
+                                stroke="rgba(0,0,0,0.12)" strokeWidth="1" />
+                            <line x1="24" y1="109" x2="60" y2="109" stroke="rgba(0,0,0,0.08)" strokeWidth="1" />
+                            <line x1="42" y1="95"  x2="42" y2="123" stroke="rgba(0,0,0,0.08)" strokeWidth="1" />
                         </svg>
-                        
-                      <div className="flex items-center gap-2 mb-3">
+
+                      <div className="relative flex items-center gap-2 mb-3">
                         <span className="text-2xl">🏆</span>
-                        <h3 className="font-semibold text-lg">Prize Pool</h3>
+                        <h3 className="font-semibold text-lg text-gray-900">Prize Pool</h3>
                       </div>
-                      <div className="space-y-2">
+                      <div className="relative space-y-2">
                         <div className="flex justify-between items-center">
-                          <span className="text-gray-400 text-sm">Total Pool:</span>
-                          <span className="font-bold text-xl">
+                          <span className="text-gray-500 text-sm">Total Pool:</span>
+                          <span className="font-bold text-xl text-gray-900">
                             ₦{prize.minPool.toLocaleString()} - ₦{prize.maxPool.toLocaleString()}
                           </span>
                         </div>
-                        <div className="h-px bg-gray-700"></div>
+                        <div className="h-px bg-gray-200"></div>
                         <div className="flex justify-between items-center">
-                          <span className="text-gray-400 text-sm">After 30% fee:</span>
-                          <span className="font-bold text-xl text-green-400">
+                          <span className="text-gray-500 text-sm">After 30% fee:</span>
+                          <span className="font-bold text-xl text-green-600">
                             ₦{prize.minActual.toLocaleString()} - ₦{prize.maxActual.toLocaleString()}
                           </span>
                         </div>
                       </div>
                     </div>
 
-                    <div className="bg-yellow-500/10 p-4 rounded-xl">
-                      <p className="text-xs text-yellow-400">
+                    <div className="bg-purple-50 border border-purple-100 p-4 rounded-xl">
+                      <p className="text-xs text-purple-700">
                         Platform fee: 30% of total pool
                       </p>
                     </div>
@@ -558,10 +558,10 @@ export default function CreateTournament() {
               </div>
 
               <div className="flex gap-3 pt-6">
-                <button onClick={back} className="flex-1">
+                <button onClick={back} className="flex-1 py-3 rounded-xl font-semibold text-gray-500 bg-gray-50">
                   Back
                 </button>
-                <button onClick={next} className="flex-1 btn-primary">
+                <button onClick={next} className="flex-1 py-3 rounded-xl font-semibold bg-brand-500 text-black">
                   Continue
                 </button>
               </div>
@@ -572,13 +572,13 @@ export default function CreateTournament() {
           {step === 4 && (
             <div className="flex flex-col h-full p-6">
               <div className="mb-6">
-                <h2 className="text-2xl font-bold mb-2">Review Details</h2>
-                <p className="text-gray-400 text-sm">Confirm your tournament settings</p>
+                <h2 className="text-2xl font-bold mb-2 text-gray-900">Review Details</h2>
+                <p className="text-gray-500 text-sm">Confirm your tournament settings</p>
               </div>
 
               <div className="flex-1 overflow-y-auto space-y-4">
                 {/* Game Card */}
-                <div className="bg-white/5 p-5 rounded-2xl">
+                <div className="bg-gray-50 border border-gray-100 p-5 rounded-2xl">
                   <div className="flex items-center gap-4">
                     <img
                       src={selectedGame?.image}
@@ -586,51 +586,51 @@ export default function CreateTournament() {
                       className="w-20 h-20 rounded-xl object-cover"
                     />
                     <div>
-                      <p className="text-xs text-gray-400 mb-1">Game</p>
-                      <h3 className="text-xl font-bold">{selectedGame?.name}</h3>
+                      <p className="text-xs text-gray-500 mb-1">Game</p>
+                      <h3 className="text-xl font-bold text-gray-900">{selectedGame?.name}</h3>
                     </div>
                   </div>
                 </div>
 
                 {/* Details Grid */}
                 <div className="grid grid-cols-2 gap-3">
-                  <div className="bg-white/5 p-4 rounded-xl">
-                    <p className="text-xs text-gray-400 mb-1">Players</p>
-                    <p className="text-lg font-bold">
+                  <div className="bg-gray-50 border border-gray-100 p-4 rounded-xl">
+                    <p className="text-xs text-gray-500 mb-1">Players</p>
+                    <p className="text-lg font-bold text-gray-900">
                       {form.minPlayers} - {form.maxPlayers}
                     </p>
                   </div>
-                  <div className="bg-white/5 p-4 rounded-xl">
-                    <p className="text-xs text-gray-400 mb-1">Duration</p>
-                    <p className="text-lg font-bold">{form.duration} mins</p>
+                  <div className="bg-gray-50 border border-gray-100 p-4 rounded-xl">
+                    <p className="text-xs text-gray-500 mb-1">Duration</p>
+                    <p className="text-lg font-bold text-gray-900">{form.duration} mins</p>
                   </div>
                 </div>
 
                 {/* Time Details */}
-                <div className="bg-white/5 p-5 rounded-xl space-y-3">
+                <div className="bg-gray-50 border border-gray-100 p-5 rounded-xl space-y-3">
                   <div>
-                    <p className="text-xs text-gray-400 mb-1">Starts</p>
-                    <p className="font-semibold text-green-400">
+                    <p className="text-xs text-gray-500 mb-1">Starts</p>
+                    <p className="font-semibold text-green-600">
                       {formatDateTime(form.startTime)}
                     </p>
                   </div>
-                  <div className="h-px bg-gray-700"></div>
+                  <div className="h-px bg-gray-200"></div>
                   <div>
-                    <p className="text-xs text-gray-400 mb-1">Ends</p>
-                    <p className="font-semibold text-red-400">
+                    <p className="text-xs text-gray-500 mb-1">Ends</p>
+                    <p className="font-semibold text-red-500">
                       {formatDateTime(endTime)}
                     </p>
                   </div>
                 </div>
 
                 {/* Wager Card */}
-                <div className={`p-5 rounded-xl ${"bg-white/5"}`}>
-                  <p className="text-xs text-gray-400 mb-1">Entry Fee</p>
-                  <p className="text-2xl font-bold">
+                <div className="p-5 rounded-xl bg-gray-50 border border-gray-100">
+                  <p className="text-xs text-gray-500 mb-1">Entry Fee</p>
+                  <p className="text-2xl font-bold text-gray-900">
                     {form.wager > 0 ? `₦${form.wager.toLocaleString()}` : "Free"}
                   </p>
                   {prize && form.wager > 0 && (
-                    <p className="text-xs mt-2">
+                    <p className="text-xs mt-2 text-gray-500">
                       Prize: ₦{prize.minActual.toLocaleString()} - ₦{prize.maxActual.toLocaleString()}
                     </p>
                   )}
@@ -638,7 +638,7 @@ export default function CreateTournament() {
               </div>
 
               <div className="flex gap-3 pt-6">
-                <button onClick={back} className="flex-1">
+                <button onClick={back} className="flex-1 py-3 rounded-xl font-semibold text-gray-500 bg-gray-50">
                   Edit
                 </button>
                 <button
@@ -646,7 +646,7 @@ export default function CreateTournament() {
                     next();
                     setOpen(true);
                   }}
-                  className="flex-1 btn-primary"
+                  className="flex-1 py-3 rounded-xl font-semibold bg-brand-500 text-black"
                 >
                   Create Tournament
                 </button>
@@ -664,24 +664,24 @@ export default function CreateTournament() {
                 className="text-center"
               >
                 <div className="text-8xl mb-6">🎉</div>
-                <h2 className="text-3xl font-bold mb-3">
+                <h2 className="text-3xl font-bold mb-3 text-gray-900">
                   Tournament Created!
                 </h2>
-                <p className="text-gray-400 mb-8">
+                <p className="text-gray-500 mb-8">
                   Your tournament is ready. Share with friends!
                 </p>
 
-                <div className="bg-white/5 p-6 rounded-2xl mb-6">
-                  <p className="text-xs text-gray-400 mb-2">Tournament Code</p>
+                <div className="border border-gray-100 p-6 rounded-2xl mb-6">
+                  <p className="text-xs text-gray-500 mb-2">Tournament Code</p>
                   <div className="flex items-center justify-center gap-3 mb-4">
-                    <span className="text-3xl font-bold tracking-wider text-green-400">
+                    <span className="text-3xl font-bold tracking-wider text-purple-600">
                       OCTA123
                     </span>
                   </div>
-                  <button className="w-full py-3 bg-brand-500/20 text-green-400 rounded-xl font-medium border border-brand-500/30 active:scale-95 transition-transform">
+                  <button className="w-full py-3 bg-brand-500/10 text-purple-600 rounded-xl font-medium border border-brand-500/30 active:scale-95 transition-transform">
                     Copy Code
                   </button>
-                  <button className="mt-2 w-full py-3 text-white rounded-xl font-medium active:scale-95 transition-transform">
+                  <button className="mt-2 w-full py-3 text-gray-900 bg-white border border-gray-200 rounded-xl font-medium active:scale-95 transition-transform">
                     Share Link
                   </button>
                 </div>
@@ -699,10 +699,10 @@ export default function CreateTournament() {
                       wager: 0,
                     });
                   }}
-                  className="w-full py-4 text-gray-400 font-medium mt-4"
+                  className="w-full py-4 text-gray-500 font-medium mt-4"
                 >
                   Create Another
-                </button>                
+                </button>
 
                 <button
                   onClick={() => setOpen(true)}
@@ -711,7 +711,7 @@ export default function CreateTournament() {
                   Invite Friends
                 </button>
 
-                <button className="btn- mt-6 font-semibold px-2 py-3 w-full text-red rounded-[20px]">
+                <button className="mt-6 font-semibold px-2 py-3 w-full text-red-500 rounded-[20px]">
                     Click to close
                 </button>
               </motion.div>

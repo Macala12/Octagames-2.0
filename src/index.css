@@ -29,7 +29,7 @@ layer(base);
   --text-theme-xs--line-height: 18px;
 
   /* BACKGROUND SYSTEM */
-  --color-background: #0a0a0a;
+  --color-background: #fffdf5; /* formerly #0a0a0a */
 
   --color-surface-1: #111111;
   --color-surface-2: #161616;
@@ -48,7 +48,7 @@ layer(base);
 
   /* TAILWIND-FRIENDLY BRAND */
   --color-brand-400: #26ffbd;
-  --color-brand-500: #09f2a6;
+  --color-brand-500: #7C3AED;
   --color-brand-600: #07c98a;
 
   /* STATES */
@@ -194,4 +194,40 @@ layer(base);
 ========================= */
 .tableCheckbox:checked ~ span {
   @apply border-brand-500 bg-brand-500;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-5deg); }
+  50% { transform: rotate(5deg); }
+}
+
+@keyframes bellShake {
+  0% { transform: rotate(0); }
+  15% { transform: rotate(12deg); }
+  30% { transform: rotate(-10deg); }
+  45% { transform: rotate(8deg); }
+  60% { transform: rotate(-6deg); }
+  75% { transform: rotate(4deg); }
+  100% { transform: rotate(0); }
+}
+
+.bell-shake {
+  animation: bellShake 0.6s ease-in-out infinite;
+  transform-origin: top center;
 }

@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
+import NeubrutalistCard from "../../components/ui/cards/NeuCard";
+import FriendGameSearch from "./GameSearch";
+import OnlineFriends from "../../components/friends/PlatFriendFindFriend";
 
 // --- Types ---
 interface ChatPreview {
@@ -42,7 +45,7 @@ interface Props {
   onViewTournament?: (id: string) => void;
 }
 
-const ACCENT = "#09f2a6";
+const ACCENT = "#7C3AED";
 const ACCENT_TEXT = "#fff";
 
 // --- Countdown hook ---
@@ -71,12 +74,12 @@ function TabPill({ tabs, active, onChange }: {
   onChange: (id: string) => void;
 }) {
   return (
-    <div className="flex dark: text-white rounded-full p-1 gap-1">
+    <div className="flex dark: text-white p-1 gap-1">
       {tabs.map(t => (
         <button key={t.id} onClick={() => onChange(t.id)}
-          className="flex-1 py-2.5 rounded-full text-[13px] font-bold transition-all"
+          className="flex-1 py-2.5 text-[13px] font-bold transition-all"
           style={active === t.id
-            ? { color: ACCENT_TEXT, border: `1px solid ${ACCENT}` }
+            ? { color: '#000', border: `1px solid ${ACCENT},`, background: ACCENT }
             : { background: "transparent", color: "var(--color-text-secondary)" }}>
           {t.label}
         </button>
@@ -88,27 +91,13 @@ function TabPill({ tabs, active, onChange }: {
 // ─── Message Banner (fixed) ────────────────────────────────────────────────
 const MessageBanner = ({ count = 10, onClick }: { count?: number; onClick?: () => void }) => (
   <div onClick={onClick}
-    className="relative rounded-[18px] p-4 overflow-hidden flex items-center gap-3 cursor-pointer active:scale-[0.98] transition-transform"
-    style={{ background: "#09f2a6" }}>
-
-    {/* Subtle dot + blob bg */}
-    <svg className="absolute inset-0 w-full h-full" viewBox="0 0 360 72"
-      preserveAspectRatio="xMidYMid slice">
-      <defs>
-        <pattern id="gbd" x="0" y="0" width="18" height="18" patternUnits="userSpaceOnUse">
-          <circle cx="1" cy="1" r="0.7" fill="rgba(0,0,0,0.06)"/>
-        </pattern>
-      </defs>
-      <rect width="360" height="72" fill="url(#gbd)"/>
-      <ellipse cx="310" cy="20" rx="100" ry="70" fill="rgba(0,0,0,0.06)"/>
-      <ellipse cx="40"  cy="60" rx="80"  ry="55" fill="rgba(0,0,0,0.05)"/>
-    </svg>
+    className="relative rounded-[18px] p-4 overflow-hidden flex items-center gap-3 cursor-pointer active:scale-[0.98] transition-transform">
 
     {/* Icon tile */}
     <div className="relative w-11 h-11 rounded-[14px] flex items-center justify-center flex-shrink-0"
       style={{ background: "rgba(0,0,0,0.12)", border: "1px solid rgba(0,0,0,0.1)" }}>
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
-        stroke="#022b1e" strokeWidth="2" strokeLinecap="round">
+        stroke="#fff" strokeWidth="2" strokeLinecap="round">
         <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
         <circle cx="9" cy="7" r="4"/>
         <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
@@ -117,9 +106,9 @@ const MessageBanner = ({ count = 10, onClick }: { count?: number; onClick?: () =
 
     {/* Text */}
     <div className="relative flex-1 min-w-0">
-      <p className="text-[15px] font-extrabold mb-0.5" style={{ color: "#022b1e" }}>Messages</p>
-      <p className="text-[12px]" style={{ color: "rgba(2,43,30,0.6)" }}>
-        You have <span className="font-extrabold" style={{ color: "#022b1e" }}>{count}</span> new messages
+      <p className="text-[15px] font-extrabold mb-0.5 text-white">Messages</p>
+      <p className="text-[12px] text-white">
+        You have <span className="font-extrabold" style={{ color: ACCENT }}>{count}</span> new messages
       </p>
     </div>
 
@@ -127,7 +116,7 @@ const MessageBanner = ({ count = 10, onClick }: { count?: number; onClick?: () =
     <div className="relative w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
       style={{ background: "rgba(0,0,0,0.1)" }}>
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-        stroke="#022b1e" strokeWidth="2.5" strokeLinecap="round">
+        stroke="#fff" strokeWidth="2.5" strokeLinecap="round">
         <path d="M9 18l6-6-6-6"/>
       </svg>
     </div>
@@ -142,16 +131,20 @@ function GamesTab({ onJoinGame, onCreateGame }: { onJoinGame?: (c: string) => vo
   return (
     <div className="flex flex-col gap-5" >
       {/* Hero banner */}
-      <div className="relative rounded-[18px] p-4 overflow-hidden flex items-center gap-3" style={{ background: "#0a0a0a" }} onClick={() => {navigate('/create')}}>
-        <svg className="absolute inset-0 w-full h-full" viewBox="0 0 360 90" preserveAspectRatio="xMidYMid slice">
-          <defs><pattern id="gbd" x="0" y="0" width="18" height="18" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="0.7" fill="rgba(255,255,255,0.06)"/></pattern></defs>
-          <rect width="360" height="90" fill="url(#gbd)"/>
-          <ellipse cx="310" cy="20" rx="100" ry="70" fill="#09f2a6" opacity="0.07"/>
-          <ellipse cx="40"  cy="75" rx="80"  ry="55" fill="#7C3AED" opacity="0.08"/>
-        </svg>
+      <OnlineFriends  />
+      
+      <NeubrutalistCard
+        mainColor="#1a1a1a"
+        shadowColor="#7C3AED"
+        pressable
+        shadowOffsetX={5}
+        shadowOffsetY={5}
+        borderRadius={10}
+      >
+      <div className="relative rounded-[10px] p-4 overflow-hidden flex items-center gap-3" onClick={() => {navigate('/create')}}>
         <div className="relative w-12 h-12 rounded-[14px] flex items-center justify-center flex-shrink-0"
-          style={{ background: "rgba(9,242,166,0.15)", border: "1px solid rgba(9,242,166,0.3)" }}>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={ACCENT} strokeWidth="1.8" strokeLinecap="round">
+          style={{ background: "#7C3AED", border: "1px solid #7C3AEDae" }}>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={"#000"} strokeWidth="1.8" strokeLinecap="round">
             <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
             <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
           </svg>
@@ -162,19 +155,20 @@ function GamesTab({ onJoinGame, onCreateGame }: { onJoinGame?: (c: string) => vo
             Invite friends, compete together, and see who tops the leaderboard.
           </p>
         </div>
-          <div className="relative w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
-            style={{ background: "#09f2a47e" }}>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-              stroke="#000" strokeWidth="2.5" strokeLinecap="round">
-              <path d="M9 18l6-6-6-6"/>
-            </svg>
-          </div>
+        <div className="relative w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
+          style={{ background: "#7C3AED" }}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+            stroke="#000" strokeWidth="2.5" strokeLinecap="round">
+            <path d="M9 18l6-6-6-6"/>
+          </svg>
+        </div>
       </div>
-
-      <MessageBanner onClick={() => {navigate('/chats')}} />
+      </NeubrutalistCard>
 
       {/* Game code input */}
-      <div>
+      <FriendGameSearch onJoinGame={onJoinGame} onCreateGame={onCreateGame} />
+
+      {/* <div>
         <p className="text-[14px] font-extrabold text-gray-900 dark:text-white mb-1">Search for a friends game</p>
         <p className="text-[12px] text-gray-400 mb-3">Enter a game code to join a private game created by your friend.</p>
         <div className="relative">
@@ -184,7 +178,7 @@ function GamesTab({ onJoinGame, onCreateGame }: { onJoinGame?: (c: string) => vo
             onKeyDown={e => e.key === "Enter" && code.length >= 4 && onJoinGame?.(code)}
             placeholder="Type game code..."
             maxLength={8}
-            className="w-full px-4 pr-11 py-3.5 rounded-2xl text-[14px] font-semibold tracking-widest outline-none transition-all
+            className="w-full px-4 pr-11 py-3.5 text-[14px] font-semibold tracking-widest outline-none transition-all
               bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/8
               text-gray-900 dark:text-white placeholder:text-gray-300 dark:placeholder:text-white/20
               focus:border-[#09f2a6]"
@@ -198,7 +192,7 @@ function GamesTab({ onJoinGame, onCreateGame }: { onJoinGame?: (c: string) => vo
             </svg>
           </button>
         </div>
-      </div>
+      </div> */}
 
       {/* Active games empty state */}
       <div>
@@ -218,7 +212,7 @@ function GamesTab({ onJoinGame, onCreateGame }: { onJoinGame?: (c: string) => vo
             Create a game and play with friends.<br />Be the first and invite them to play 🎯
           </p>
           <button onClick={onCreateGame}
-            className="rounded-full px-6 py-2.5 text-[13px] text-black font-extrabold active:scale-95 transition-transform"
+            className="px-6 py-2.5 text-[13px] text-black font-extrabold active:scale-95 transition-transform"
             style={{ background: ACCENT }}>
             + Create a Game
           </button>
@@ -290,7 +284,7 @@ function GamesTab({ onJoinGame, onCreateGame }: { onJoinGame?: (c: string) => vo
 function ActiveTournamentCard({ tournament, onView }: { tournament: ActiveTournament; onView?: (id: string) => void }) {
   const timer = useCountdown(tournament.endTime);
   return (
-    <div className="rounded-[18px] overflow-hidden" style={{ background: "#0a0a0a", border: `1.5px solid rgba(9,242,166,0.25)` }}>
+    <div className="overflow-hidden" style={{ background: "#0a0a0a"}}>
       <div className="h-24 relative overflow-hidden flex items-center justify-center" style={{ background: "#0a0a0a" }}>
         {tournament.image ? (
           <img src={tournament.image} alt={tournament.title} className="w-full h-full object-cover" />
@@ -331,7 +325,7 @@ function HistoryCard({ item, onView }: { item: TournamentHistoryItem; onView?: (
     return (
     <>
         {item.title ? (
-            <div className="rounded-[18px] overflow-hidden bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/8">
+            <div className="overflow-hidden bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/8">
                 <div className="h-24 relative overflow-hidden flex items-center justify-center" style={{ background: item.bg }}>
                     {item.image ? (
                     <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
@@ -375,7 +369,7 @@ function HistoryCard({ item, onView }: { item: TournamentHistoryItem; onView?: (
 // --- Main screen ---
 export default function FriendsScreen({
   tournamentHistory = [{id: "1", title: "fake title", reward: 100, date: "2025", status: "active", bg: "#fff", accent: "#000"}],
-  activeTournament = null,
+  activeTournament = {id: "1", title: "Subway Surfers", prize: 1000, endTime: "2026-06-12T12:00:00Z", image: "a"},
   onJoinGame,
   onCreateGame,
   onViewTournament,
@@ -391,8 +385,8 @@ export default function FriendsScreen({
           <h1 className="text-[20px] font-bold text-gray-900 dark:text-white">Friends</h1>
           <p className="text-xs text-gray-400 mt-0.5">Challenge, play and have fun with friends</p>
         </div>
-        <button className="w-9 h-9 rounded-full flex items-center justify-center bg-gray-100 dark:bg-white/10 border-gray-200 dark:border-white/10">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        <button className="w-9 h-9 rounded-full flex items-center justify-center bg-white dark:bg-white/10 border-gray-200 dark:border-white/10">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7C3AED"
             strokeWidth="2" strokeLinecap="round">
             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
             <line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/>
