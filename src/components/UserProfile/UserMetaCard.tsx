@@ -108,9 +108,9 @@ export default function UserMetaCard() {
       {/* Name + meta */}
       <div className="px-5 pb-5 pt-3">
         <div className="flex items-center gap-2 mb-1.5">
-          <span className="text-[17px] font-extrabold text-gray-900">
+          <h4 className="text-[17px] font-extrabold text-gray-900">
             @datboifrom_imo
-          </span>
+          </h4>
           <span
             className="text-[10px] font-bold px-2 py-0.5 rounded-full text-white flex-shrink-0"
             style={{ background: ACCENT }}

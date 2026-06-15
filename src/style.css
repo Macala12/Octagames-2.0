@@ -1,3 +1,10 @@
+h1,h2,h3,h4,h5,h6 {
+    /* font-family: "Special Gothic Expanded One", sans-serif; */
+    font-family: "Climate Crisis", sans-serif;
+    font-variation-settings:
+    "YEAR" 2020;
+
+}
 .input {
     width: 100%;
     padding: 14px 16px;

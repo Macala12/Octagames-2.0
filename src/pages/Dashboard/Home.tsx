@@ -4,13 +4,10 @@ import PageMeta from "../../components/common/PageMeta";
 import { TournamentCarousel } from "../../components/tournament/TournamentCarousel";
 import gameImg from "../../images/towermaster.png";
 import gameImg2 from "../../images/subway.jpeg";
-import numberOne from "../../images/number-1.png"
-import numberTwo from "../../images/number-2.png"
-import numberThree from "../../images/number-3.png"
 
 // import OctaCoinGrid from "../../components/game/OctacoinGrid";
 import { GameGrid } from "../../components/game/GameGrid";
-import QuickActions from "../../components/game/QuickAction";
+// import QuickActions from "../../components/game/QuickAction";
 import WinnersMarquee from "../../components/carousel/RecentWinners";
 import TopPlayers from "../../components/game/TopPlayer";
 import GameCanvas from "../../components/game/GameCanvas";
@@ -25,6 +22,7 @@ import SpecialTournamentCard from "../../components/tournament/SpecialTournament
 import StreakAndMissions from "../../components/gamifications/DailyStreakMission";
 // import ActivityTicker from "../../components/tournament/Ticker";
 // import NotificationCard from "../../components/ui/bottom-sheet/PushNotification";
+import CasinoGameCarousel from "../../components/game/GameCarousel";
 
 export default function Home() {
   const [isGameOpen, setIsGameOpen] = useState(false);
@@ -201,48 +199,19 @@ export default function Home() {
 
           <CardDeckCarousel autoPlay interval={5000} />
 
-          <TopPlayers
-            players={[
-              {
-                id: "1",
-                username: "veesbaby 💗",
-                avatar: "https://api.dicebear.com/9.x/big-smile/svg?seed=zo3twbi2&radius=50&backgroundType=gradientLinear&randomizeIds=true&skinColor=643d19,8c5a2b,a47539,c99c62&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc,ffdfbf",
-                rank: 1,
-                rankImage: numberOne,
-              },
-              {
-                id: "2",
-                username: "opueh ✋🏽",
-                avatar: "https://api.dicebear.com/9.x/big-smile/svg?seed=opueh&radius=50&backgroundType=gradientLinear&randomizeIds=true&skinColor=643d19,8c5a2b,a47539,c99c62&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc,ffdfbf",
-                rank: 2,
-                rankImage: numberTwo,
-              },
-              {
-                id: "3",
-                username: "@franky 🏐",
-                avatar: "https://api.dicebear.com/9.x/big-smile/svg?seed=franky&radius=50&backgroundType=gradientLinear&randomizeIds=true&skinColor=643d19,8c5a2b,a47539,c99c62&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc,ffdfbf",
-                rank: 3,
-                rankImage: numberThree,
-              },
-              {
-                id: "4",
-                username: "@Daisy",
-                avatar: "https://api.dicebear.com/9.x/big-smile/svg?seed=daisy&radius=50&backgroundType=gradientLinear&randomizeIds=true&skinColor=643d19,8c5a2b,a47539,c99c62&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc,ffdfbf",
-                rank: 3,
-                rankImage: numberThree,
-              },
-            ]}
-          />
+          <TopPlayers />
 
           {/* <UserStreak streak={6} nextMilestone={7} /> */}
 
           {/* <OctaCoinGrid limit={3} /> */}
 
-          <div>
+          {/* <div>
             <QuickActions />
-          </div>
+          </div> */}
 
-          <div className="mt-8">
+          <CasinoGameCarousel />
+
+          <div className="mt-4">
             <h4 className="text-sm font-semibold text-black dark:text-gray-400 mb-3">
               Popular Games
             </h4>

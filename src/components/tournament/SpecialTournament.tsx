@@ -395,11 +395,11 @@ function SingleCard({
               style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent)" }} />
           )}
           {t.isJoined ? (
-            <><Play size={16} fill={ACCENT} /><span>Resume Game</span><ChevronRight size={15} /></>
+            <><Play size={16} fill={ACCENT} /><h5>Resume Game</h5><ChevronRight size={15} /></>
           ) : isFull ? (
-            <><Bell size={16} /><span>Notify When Open</span></>
+            <><Bell size={16} /><h5>Notify When Open</h5></>
           ) : (
-            <><Zap size={16} /><span>Enter Tournament</span><ChevronRight size={15} /></>
+            <><Zap size={16} /><h5>Enter Tournament</h5><ChevronRight size={15} /></>
           )}
         </button>
 

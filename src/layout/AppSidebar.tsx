@@ -164,7 +164,7 @@ const AppSidebar: React.FC = () => {
       <aside
         className={`
           fixed z-50 dark:bg-[#0a0a0a]
-          bottom-2 left-0 w-full h-[68px]
+          bottom-0 left-0 w-full h-[68px]
           flex flex-row items-center justify-around
           dark:border-white/[0.06]
           lg:top-0 lg:left-0 lg:h-screen lg:border-r lg:border-t-0

@@ -416,7 +416,7 @@ export default function StreakAndMissions() {
              🔥
             </div>
             <div>
-              <h2 className="text-[16px] font-bold text-black">Daily Streak</h2>
+              <p className="text-[16px] font-bold text-black">Daily Streak</p>
               <p className="text-[11px] text-black/40">
                 <span className="text-[#000] font-bold">{currentStreak}</span> day streak! Keep it burning!
               </p>
