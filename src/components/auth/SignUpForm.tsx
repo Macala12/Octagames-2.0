@@ -538,12 +538,14 @@ export default function SignUpForm() {
 
                   <div>
                     <Label>Enter OTP</Label>
-                    <Input
+                    <input
                       value={formData.otp}
                       onChange={(e) => setFormData({...formData, otp: e.target.value})}
                       placeholder="000000"
                       maxLength={6}
-                      className="mt-2 h-12 rounded-xl text-center text-2xl font-bold tracking-widest"
+                      type="text"
+                      inputMode="numeric"
+                      className="mt-2 h-12 rounded-xl text-center text-2xl font-bold tracking-widest border-none outline-none"
                     />
                     <p className="text-xs text-center text-gray-500 mt-2">
                       Didn't receive code? <button className="text-purple-600 font-semibold">Resend</button>
@@ -583,7 +585,7 @@ export default function SignUpForm() {
         </div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         @keyframes fadeIn {
           from { opacity: 0; transform: translateY(10px); }
           to { opacity: 1; transform: translateY(0); }

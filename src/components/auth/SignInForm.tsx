@@ -174,7 +174,7 @@ export default function SignInForm() {
         </div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         @keyframes bounce {
           0%, 100% {
             transform: translateY(0);

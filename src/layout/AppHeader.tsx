@@ -1,4 +1,4 @@
-import { Wallet, Coins, ChevronDown } from "lucide-react";
+import { Wallet, Coins } from "lucide-react";
 import NotificationDropdown from "../components/header/NotificationDropdown";
 import UserHeader from "../components/header/UserHeader";
 

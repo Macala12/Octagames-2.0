@@ -2,7 +2,7 @@ import UserMetaCard from "../components/UserProfile/UserMetaCard";
 import Settings from "../components/UserProfile/Settings";
 import PageMeta from "../components/common/PageMeta";
 import ReferralCard from "../components/cards/ReferralCard";
-import UserInfoCard from "../components/UserProfile/UserInfoCard";
+// import UserInfoCard from "../components/UserProfile/UserInfoCard";
 import AchievementGallery from "../components/UserProfile/AchievementGallery";
 import RecentBattles from "../components/UserProfile/FriendsBattleHistory";
 export default function UserProfiles() {

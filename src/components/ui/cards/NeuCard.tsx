@@ -74,7 +74,6 @@ export default function NeubrutalistCard({
         onClick={onClick}
         onMouseDown={() => pressable && setPressed(true)}
         onMouseUp={() => pressable && setPressed(false)}
-        onMouseLeave={() => pressable && setPressed(false)}
         onTouchStart={() => pressable && setPressed(true)}
         onTouchEnd={() => pressable && setPressed(false)}
         className={className}
@@ -108,13 +107,16 @@ export default function NeubrutalistCard({
             : undefined
         }
         onMouseLeave={
-          hoverable && !pressable
-            ? (e) => {
-                const el = e.currentTarget as HTMLDivElement;
-                el.style.transform = "translate(0,0)";
-                el.style.boxShadow = `${shadowOffsetX}px ${shadowOffsetY}px 0px 0px ${shadowColor}, ${shadowOffsetX}px ${shadowOffsetY}px 0px ${borderWidth}px ${borderColor}`;
-              }
-            : undefined
+          (e) => {
+            // Clear pressed state when leaving
+            if (pressable) setPressed(false);
+            // Reset hover styles if hoverable and not pressable
+            if (hoverable && !pressable) {
+              const el = e.currentTarget as HTMLDivElement;
+              el.style.transform = "translate(0,0)";
+              el.style.boxShadow = `${shadowOffsetX}px ${shadowOffsetY}px 0px 0px ${shadowColor}, ${shadowOffsetX}px ${shadowOffsetY}px 0px ${borderWidth}px ${borderColor}`;
+            }
+          }
         }
       >
         {children}

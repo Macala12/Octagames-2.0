@@ -1,8 +1,8 @@
-import { useEffect, useMemo, useRef, useState, useCallback } from "react";
+import { useEffect, useMemo, useState, useCallback } from "react";
 import { AnimatePresence, motion, PanInfo } from "framer-motion";
 import {
   Briefcase, ShieldCheck, Gift, Wallet,
-  ArrowRight, Sparkles, Users, Star,
+  ArrowRight, Sparkles
 } from "lucide-react";
 
 /* ─── TYPES ────────────────────────────────────────────────── */
@@ -104,7 +104,7 @@ export default function CardDeckCarousel({
   const [isAnimating, setIsAnimating] = useState(false);
   const [dragDir, setDragDir]     = useState<"up" | "down" | null>(null);
   const [isPaused, setIsPaused]   = useState(false);
-  const progressRef               = useRef<ReturnType<typeof setTimeout>>();
+  // const progressRef               = useRef<ReturnType<typeof setTimeout>>();
 
   const nextCard = useCallback(() => {
     if (isAnimating) return;

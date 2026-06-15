@@ -5,7 +5,7 @@ import { useState } from "react"
 type Visibility = "everyone" | "friends" | "noone"
 interface BlockedUser { id: string; username: string }
 
-const ACCENT = "#09f2a6", AT = "#022b1e"
+const ACCENT = "#09f2a6";
 
 function SectionLabel({ label }: { label: string }) {
   return <p className="text-[11px] font-bold uppercase tracking-widest text-gray-400 px-1 mb-2 mt-5">{label}</p>

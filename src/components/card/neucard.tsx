@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, CSSProperties } from "react";
 
 const defaultProps = {
   name: "Sepideh Yazdi",
@@ -8,7 +8,7 @@ const defaultProps = {
   icon: "😊",
 };
 
-export default function NeubrutalistCard(props) {
+export default function NeubrutalistCard(props: any) {
   const [data, setData] = useState({ ...defaultProps, ...props });
   const [editing, setEditing] = useState(false);
   const [draft, setDraft] = useState(data);
@@ -69,12 +69,12 @@ export default function NeubrutalistCard(props) {
             <Field
               label="NAME"
               value={draft.name}
-              onChange={(v) => setDraft((d) => ({ ...d, name: v }))}
+              onChange={(v: any) => setDraft((d: any) => ({ ...d, name: v }))}
             />
             <Field
               label="HANDLE"
               value={draft.handle}
-              onChange={(v) => setDraft((d) => ({ ...d, handle: v }))}
+              onChange={(v: any) => setDraft((d: any) => ({ ...d, handle: v }))}
             />
           </div>
 
@@ -82,12 +82,12 @@ export default function NeubrutalistCard(props) {
             <Field
               label="COMPANY / BRAND"
               value={draft.company}
-              onChange={(v) => setDraft((d) => ({ ...d, company: v }))}
+              onChange={(v: any) => setDraft((d: any) => ({ ...d, company: v }))}
             />
             <Field
               label="ROLE / TITLE"
               value={draft.title}
-              onChange={(v) => setDraft((d) => ({ ...d, title: v }))}
+              onChange={(v: any) => setDraft((d: any) => ({ ...d, title: v }))}
             />
           </div>
 
@@ -101,7 +101,7 @@ export default function NeubrutalistCard(props) {
                     ...styles.iconOpt,
                     ...(draft.icon === ic ? styles.iconOptSelected : {}),
                   }}
-                  onClick={() => setDraft((d) => ({ ...d, icon: ic }))}
+                  onClick={() => setDraft((d: any) => ({ ...d, icon: ic }))}
                 >
                   {ic}
                 </button>
@@ -123,7 +123,7 @@ export default function NeubrutalistCard(props) {
   );
 }
 
-function Field({ label, value, onChange }) {
+function Field({ label, value, onChange }: { label: string; value: string; onChange: (v: string) => void }) {
   return (
     <div style={{ flex: 1 }}>
       <div style={styles.label}>{label}</div>
@@ -140,7 +140,7 @@ const BORDER = "3px solid #111";
 const YELLOW = "#f5c842";
 const BG = "#fdf6ec";
 
-const styles = {
+const styles: { [key: string]: CSSProperties } = {
   page: {
     background: YELLOW,
     minHeight: "340px",

@@ -269,7 +269,7 @@ function ResultScreen({ myScore, opponentScore, opponentName, wager, onHome, onP
 // ─── Main component ───────────────────────────────────────────────────────────
 export default function GameCanvas({
   isOpen, onClose, gameUrl, gameTitle = "Game",
-  opponentName = "Opponent", sessionId, wager,
+  opponentName = "Opponent", wager,
 }: GameCanvasProps) {
   injectCSS();
 

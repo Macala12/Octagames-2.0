@@ -6,7 +6,7 @@ const BANKS = [
   "Fidelity Bank", "Sterling Bank", "Wema Bank", "Polaris Bank",
 ];
 
-async function lookupAccountName(bank: string, accountNumber: string): Promise<string> {
+async function lookupAccountName(_bank: string, accountNumber: string): Promise<string> {
   await new Promise((r) => setTimeout(r, 1400));
   const names: Record<string, string> = {
     "0123456789": "ADEWALE JOHN SEUN",
@@ -171,7 +171,7 @@ export function AddBankForm({ onSuccess, onCancel }: AddBankFormProps) {
   const [lookingUp, setLookingUp]         = useState(false);
   const [submitting, setSubmitting]       = useState(false);
   const [savedCard, setSavedCard]         = useState<any>(null);
-  const [focused, setFocused]             = useState(false);
+  // const []             = useState(false);
   const dropdownRef                       = useRef<HTMLDivElement>(null);
 
   const filteredBanks = BANKS.filter((b) =>

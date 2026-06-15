@@ -2,13 +2,20 @@ import { AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { InAppMessage } from "../../components/friends/InAppMsgCard";
 
+type Message = {
+  id: string;
+  name: string;
+  text: string;
+  avatar: string;
+};
+
 export default function InAppMessageContainer() {
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState<Message[]>([]);
 
   // Simulate incoming messages (replace with socket later)
   useEffect(() => {
     const interval = setInterval(() => {
-      const id = Date.now();
+      const id = Date.now().toString();
 
       setMessages((prev) => [
         {

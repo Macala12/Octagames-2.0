@@ -1,4 +1,3 @@
-import React from "react";
 import NeubrutalistCard from "../ui/cards/NeuCard";
 
 // ─── Types ────────────────────────────────────────────────────────────────────

@@ -6,7 +6,7 @@ import {
   ChevronRight, ChevronLeft, TrendingUp, Shield,
 } from "lucide-react";
 import { useEffect, useState, useRef, useCallback } from "react";
-import ActivityTicker from "../../components/tournament/Ticker";
+// import ActivityTicker from "../../components/tournament/Ticker";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 const ACCENT      = "#7C3AED";
@@ -93,21 +93,21 @@ function useCountdown(endTime: string) {
 }
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
-function DifficultyPill({ level }: { level?: Tournament["difficulty"] }) {
-  if (!level) return null;
-  const map = {
-    easy:   { label: "Easy",   color: "#09f2a6", bg: "rgba(9,242,166,0.18)"  },
-    medium: { label: "Medium", color: "#FBBF24", bg: "rgba(251,191,36,0.18)" },
-    hard:   { label: "Hard",   color: "#EF4444", bg: "rgba(239,68,68,0.18)"  },
-  };
-  const { label, color, bg } = map[level];
-  return (
-    <span className="text-[10px] font-extrabold tracking-wide px-2.5 py-1 rounded-full"
-      style={{ background: bg, color, border: `0.5px solid ${color}40` }}>
-      {label.toUpperCase()}
-    </span>
-  );
-}
+// function DifficultyPill({ level }: { level?: Tournament["difficulty"] }) {
+//   if (!level) return null;
+//   const map = {
+//     easy:   { label: "Easy",   color: "#09f2a6", bg: "rgba(9,242,166,0.18)"  },
+//     medium: { label: "Medium", color: "#FBBF24", bg: "rgba(251,191,36,0.18)" },
+//     hard:   { label: "Hard",   color: "#EF4444", bg: "rgba(239,68,68,0.18)"  },
+//   };
+//   const { label, color, bg } = map[level];
+//   return (
+//     <span className="text-[10px] font-extrabold tracking-wide px-2.5 py-1 rounded-full"
+//       style={{ background: bg, color, border: `0.5px solid ${color}40` }}>
+//       {label.toUpperCase()}
+//     </span>
+//   );
+// }
 
 function StarRating({ rating, count }: { rating?: number; count?: number }) {
   if (!rating) return null;
@@ -459,7 +459,7 @@ export default function TournamentCarousel({
         className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide"
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
-        {tournaments.map((t, i) => (
+        {tournaments.map((t) => (
           <div
             key={t.id}
             className="w-full flex-shrink-0 snap-center"

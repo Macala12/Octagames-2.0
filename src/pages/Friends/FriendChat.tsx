@@ -89,43 +89,43 @@ function TabPill({ tabs, active, onChange }: {
 }
 
 // ─── Message Banner (fixed) ────────────────────────────────────────────────
-const MessageBanner = ({ count = 10, onClick }: { count?: number; onClick?: () => void }) => (
-  <div onClick={onClick}
-    className="relative rounded-[18px] p-4 overflow-hidden flex items-center gap-3 cursor-pointer active:scale-[0.98] transition-transform">
+// const MessageBanner = ({ count = 10, onClick }: { count?: number; onClick?: () => void }) => (
+//   <div onClick={onClick}
+//     className="relative rounded-[18px] p-4 overflow-hidden flex items-center gap-3 cursor-pointer active:scale-[0.98] transition-transform">
 
-    {/* Icon tile */}
-    <div className="relative w-11 h-11 rounded-[14px] flex items-center justify-center flex-shrink-0"
-      style={{ background: "rgba(0,0,0,0.12)", border: "1px solid rgba(0,0,0,0.1)" }}>
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
-        stroke="#fff" strokeWidth="2" strokeLinecap="round">
-        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-        <circle cx="9" cy="7" r="4"/>
-        <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
-      </svg>
-    </div>
+//     {/* Icon tile */}
+//     <div className="relative w-11 h-11 rounded-[14px] flex items-center justify-center flex-shrink-0"
+//       style={{ background: "rgba(0,0,0,0.12)", border: "1px solid rgba(0,0,0,0.1)" }}>
+//       <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
+//         stroke="#fff" strokeWidth="2" strokeLinecap="round">
+//         <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+//         <circle cx="9" cy="7" r="4"/>
+//         <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+//       </svg>
+//     </div>
 
-    {/* Text */}
-    <div className="relative flex-1 min-w-0">
-      <p className="text-[15px] font-extrabold mb-0.5 text-white">Messages</p>
-      <p className="text-[12px] text-white">
-        You have <span className="font-extrabold" style={{ color: ACCENT }}>{count}</span> new messages
-      </p>
-    </div>
+//     {/* Text */}
+//     <div className="relative flex-1 min-w-0">
+//       <p className="text-[15px] font-extrabold mb-0.5 text-white">Messages</p>
+//       <p className="text-[12px] text-white">
+//         You have <span className="font-extrabold" style={{ color: ACCENT }}>{count}</span> new messages
+//       </p>
+//     </div>
 
-    {/* Arrow — vertically centered on the right */}
-    <div className="relative w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
-      style={{ background: "rgba(0,0,0,0.1)" }}>
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-        stroke="#fff" strokeWidth="2.5" strokeLinecap="round">
-        <path d="M9 18l6-6-6-6"/>
-      </svg>
-    </div>
-  </div>
-);
+//     {/* Arrow — vertically centered on the right */}
+//     <div className="relative w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
+//       style={{ background: "rgba(0,0,0,0.1)" }}>
+//       <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+//         stroke="#fff" strokeWidth="2.5" strokeLinecap="round">
+//         <path d="M9 18l6-6-6-6"/>
+//       </svg>
+//     </div>
+//   </div>
+// );
 
 // --- Games tab ---
 function GamesTab({ onJoinGame, onCreateGame }: { onJoinGame?: (c: string) => void; onCreateGame?: () => void }) {
-  const [code, setCode] = useState("");
+  // const [code, setCode] = useState("");
   const navigate = useNavigate();
 
   return (
@@ -166,7 +166,7 @@ function GamesTab({ onJoinGame, onCreateGame }: { onJoinGame?: (c: string) => vo
       </NeubrutalistCard>
 
       {/* Game code input */}
-      <FriendGameSearch onJoinGame={onJoinGame} onCreateGame={onCreateGame} />
+      <FriendGameSearch onJoinGame={onJoinGame} />
 
       {/* <div>
         <p className="text-[14px] font-extrabold text-gray-900 dark:text-white mb-1">Search for a friends game</p>

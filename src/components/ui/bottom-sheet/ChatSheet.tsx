@@ -1,7 +1,6 @@
 // ─── 4. ChatSettings.tsx ─────────────────────────────────────────────────────
 import { useState } from "react"
-const ACCENT = "#09f2a6", AT = "#022b1e"
-
+const ACCENT = "#09f2a6"
 function Toggle({ value, onChange }: { value: boolean; onChange: (v: boolean) => void }) {
   return (
     <div onClick={() => onChange(!value)} className="w-[44px] h-[26px] rounded-full relative cursor-pointer flex-shrink-0 transition-colors"
@@ -94,7 +93,7 @@ export default function ChatSettings() {
           { label: "Block User",   color: "#EF4444", bg: "rgba(239,68,68,0.1)" },
           { label: "Report User",  color: "#FBBF24", bg: "rgba(251,191,36,0.1)" },
           { label: "Clear Chat",   color: "var(--color-text-secondary)", bg: "var(--color-background-secondary)" },
-        ].map(({ label, color, bg }, i, arr) => (
+        ].map(({ label, color }, i, arr) => (
           <div key={label}>
             <button className="w-full flex items-center gap-3 px-4 py-3.5 text-left hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
               <span className="flex-1 text-[14px] font-semibold" style={{ color }}>{label}</span>
