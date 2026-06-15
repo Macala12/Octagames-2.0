@@ -29,7 +29,7 @@ layer(base);
   --text-theme-xs--line-height: 18px;
 
   /* BACKGROUND SYSTEM */
-  --color-background: #fffdf5; /* formerly #0a0a0a */
+  --color-background: #fff; /* formerly #fffdf5 */
 
   --color-surface-1: #111111;
   --color-surface-2: #161616;

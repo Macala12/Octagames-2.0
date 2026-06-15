@@ -164,7 +164,7 @@ const AppSidebar: React.FC = () => {
       <aside
         className={`
           fixed z-50 dark:bg-[#0a0a0a]
-          bottom-0 left-0 w-full h-[68px]
+          bottom-2 left-0 w-full h-[68px]
           flex flex-row items-center justify-around
           dark:border-white/[0.06]
           lg:top-0 lg:left-0 lg:h-screen lg:border-r lg:border-t-0
@@ -175,7 +175,7 @@ const AppSidebar: React.FC = () => {
         onMouseEnter={() => !isExpanded && setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <div className="w-[98%] shadow-sm bg-white py-2 px-3 bg-black w-100 rounded-[10px]">
+        <div className="w-[98%] shadow-sm bg-white py-2 bg-black w-100 rounded-[10px]">
 
         {/* LOGO — desktop only */}
         <div className="py-7 hidden lg:flex justify-center shrink-0">

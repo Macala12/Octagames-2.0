@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Flame, ChevronRight, ChevronLeft, Gift, Check, Star, Zap, Trophy} from "lucide-react";
+import { ChevronRight, ChevronLeft, Gift, Check, Star, Zap, Trophy} from "lucide-react";
 import BottomSheet from "../ui/bottom-sheet/BottomSheet";
 
 // ─── Types ───────────────────────────────────────────────────────────
@@ -408,7 +408,7 @@ export default function StreakAndMissions() {
       {/* ═══════════════════════════════════════
           DAILY STREAK SECTION
          ═══════════════════════════════════════ */}
-      <section className="p-3">
+      <section className="">
         {/* Header */}
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2.5">
@@ -418,7 +418,7 @@ export default function StreakAndMissions() {
             <div>
               <h2 className="text-[16px] font-bold text-black">Daily Streak</h2>
               <p className="text-[11px] text-black/40">
-                <span className="text-[#000] font-bold">{currentStreak}</span> days claimed
+                <span className="text-[#000] font-bold">{currentStreak}</span> day streak! Keep it burning!
               </p>
             </div>
           </div>
@@ -493,7 +493,7 @@ export default function StreakAndMissions() {
         </div>
         
         {/* Streak fire animation at bottom */}
-        <div className="flex justify-center mt-2">
+        {/* <div className="flex justify-center mt-2">
           <div className="flex items-center gap-1.5 px-4 py-2 rounded-full">
             <motion.div
               animate={{ scale: [1, 1.2, 1], rotate: [0, 5, -5, 0] }}
@@ -505,7 +505,7 @@ export default function StreakAndMissions() {
               {currentStreak} day streak! Keep it burning!
             </span>
           </div>
-        </div>
+        </div> */}
       </section>
       
       {/* Divider */}
